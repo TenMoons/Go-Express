@@ -1,0 +1,31 @@
+<view class='container'>
+	<!--logo-->
+	<view class="logo-container">
+		<image class="image-item" src="../../images/avatar/logoblue.png" mode="scaleToFill"></image>
+	</view>
+
+	<l-form name="student" l-form-btn-class="l-form-btn-class" bind:linsubmit="submit">
+		<!--姓名-->
+		<l-form-item name="studentName" label="">
+			<l-input id="studentName" value="{{student.name}}" tipType="toast" show-row="{{false}}" placeholder="请输入姓名">
+				<l-icon class='input-icon' slot="left" name="user" />
+			</l-input>
+		</l-form-item>
+		<!--学号-->
+		<l-form-item name="studentId" label="" rules="{{idRule}}">
+			<l-input id="studentId" value="{{student.id}}" tipType="toast" show-row="{{false}}" placeholder="请输入学号">
+				<l-icon class='input-icon' slot="left" name="password" />
+			</l-input>
+		</l-form-item>
+
+		<view slot="submit">
+        <l-button>提交</l-button>
+    </view>
+    <view slot="reset">
+        <l-button type="default" plain>重置</l-button>
+    </view>
+	</l-form>
+
+</view>
+
+<l-toast />

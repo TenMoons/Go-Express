@@ -1,0 +1,43 @@
+<view>
+	<content-card name="订单状态" cardPadding="{{false}}">
+		<view style="align-items:center">
+			<l-steps dot="{{true}}" active-index="1">
+				<l-step title="待接单" />
+				<l-step title="已接单" />
+				<l-step title="配送者送达" />
+				<l-step title="确认送达" />
+				<l-step title="已完成" />
+				<l-step title="已取消" />
+			</l-steps>
+		</view>
+	</content-card>
+	<order-info-cmp />
+	<!--隐私信息-->
+	<content-card name="订单状态" cardPadding="{{false}}">
+		<!--收件人-->
+		<view class='attribute-express-container'>
+			<view class='express-circle'></view>
+			<view class='express-attribute-name'>收件人</view>
+			<view class='express-attribute-desc'>
+				<text>{{receivePerson}}</text>
+			</view>
+		</view>
+		<!--手机号码-->
+		<view class='attribute-express-container'>
+			<view class='express-circle'></view>
+			<view class='express-attribute-name'>手机号码</view>
+			<view class='express-attribute-desc'>
+				<text>{{telephone}}</text>
+			</view>
+		</view>
+		<!--取件码-->
+		<view class='attribute-express-container'>
+			<view class='express-circle'></view>
+			<view class='express-attribute-name'>取件码</view>
+			<view class='express-attribute-desc'>
+				<text>{{expressId}}</text>
+			</view>
+		</view>
+	</content-card>
+
+</view>

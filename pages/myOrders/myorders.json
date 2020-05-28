@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "status": "/miniprogram_npm/lin-ui/status-show/index"
+  },
+  "navigationBarTitleText": "我的订单"
+}

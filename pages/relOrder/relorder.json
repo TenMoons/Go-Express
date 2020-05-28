@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "l-input":"../../miniprogram_npm/lin-ui/input/index",
+    "l-icon":"../../miniprogram_npm/lin-ui/icon/index",
+    "l-button":"../../miniprogram_npm/lin-ui/button/index",
+    "l-checkbox-group": "../../miniprogram_npm/lin-ui/checkbox-group/index",
+    "l-checkbox": "../../miniprogram_npm/lin-ui/checkbox/index",
+    "l-toast": "../../miniprogram_npm/lin-ui/toast/index"
+  },
+  "navigationBarTitleText": "发布订单"
+}

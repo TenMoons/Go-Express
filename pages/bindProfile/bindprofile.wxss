@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.input-icon{
+  margin-left: 15rpx;
+}
+
+.logo-container {
+  height: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50rpx;
+  padding: 40rpx 0;
+  margin-bottom: 10rpx;
+}
+
+.image-item {
+  width: 300rpx;
+  height: 300rpx;
+  align-items: center;
+}
+
+.l-form-btn-class{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 50rpx;
+}

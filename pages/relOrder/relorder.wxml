@@ -1,0 +1,125 @@
+<view class='Submit'>
+	<form bindsubmit="submitForm" bindreset='resetForm'>
+		<!-- 选择收货地址 -->
+		<view class='personinfo rowstyle' bindtap='selectAdd'>
+			<!--TODO：修改此处的bindtap为地址选择页面-->
+			<view class='address' style="margin-left:40rpx">
+				<image src='../../images/icons/receiveAddr.png' mode='scaleToFill' style='height:20px;width:20px;'></image>
+			</view>
+			<!-- 收件人、收货地址 -->
+			<view style='width:80%;'>
+				<label class='fontsize14'>收货地址</label>
+			</view>
+			<view style="margin-left:20rpx; font-size:28rpx" name="types">{{receiveAddr}}
+				<image src='../../images/icons/right_arrow.png' mode='scaleToFill' style='height:20px;width:20px;'></image>
+			</view>
+
+		</view>
+
+		<!-- 收件人、跑腿费、手机号码 -->
+		<view class="mod-a mt20">
+			<view class='buttun-wrapper'>
+				<l-input bind:linblur="inputName" value='{{receiverName}}' label="收件人" clear="{{true}}" placeholder=" " label-width="170" />
+				<l-input bind:linblur="inputPhone" value='{{receiverPhone}}' label="手机号码" clear="{{true}}" placeholder=" " label-width="170" rules="{{phoneRule}}" />
+				<l-input bind:linblur="inputFee" value='{{expressFee}}' label="跑腿费" clear="{{true}}" placeholder=" " label-width="170">
+					<l-icon class='input-icon' slot="right" style="margin-right:20rpx" name="help" bindtap="showHelp" />
+				</l-input>
+				<l-input bind:linblur="inputCode" value='{{expressNum}}' label="取件码" clear="{{true}}" placeholder=" " label-width="170" />
+			</view>
+		</view>
+
+		<view class='mod-a mt20'>
+			<!-- 快递大小 -->
+			<view class="mod t-sign-time" style="font-size:28rpx">
+				<text class="key" >快递大小</text>
+				<view class="picker-cmp" style="width: 70%; height:100%">
+					<picker name='size' bindchange="bindSizePickerChange" value="{{index2}}" range="{{arraySize}}">
+						<view class="value" name="types"> {{arraySize[index2]}}
+							<!-- <image class="arrow-r" src="../../images/icons/arrow-r-0.png"></image> -->
+						</view>
+					</picker>
+				</view>
+
+			</view>
+
+			<!-- 快递站点 -->
+			<view class="mod t-sign-time" style="font-size:28rpx">
+				<text class="key">快递站点</text>
+				<view class="picker-cmp" style="width: 70%; height:100%">
+					<picker name='size' bindchange="bindStartPickerChange" value="{{index3}}" range="{{arrayAdd}}">
+						<view class="value" name="types">{{arrayAdd[index3]}}
+							<!-- <image class="arrow-r" src="../../images/icons/arrow-r-0.png"></image> -->
+						</view>
+					</picker>
+				</view>
+			</view>
+
+			<!-- 截止时间 -->
+			<view class="mod t-sign-time" style="font-size:28rpx">
+				<text class="key" >截止时间</text>
+				<view class="picker-cmp" style="width: 70%; height:100%">
+					<picker class='time-picker' mode="multiSelector" bindchange="bindStartMultiPickerChange" bindtap='pickerTap' bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+						<view class="value" name="types"> {{endTime}}
+							<!-- <image class="arrow-r" src="../../images/icons/arrow-r-0.png"></image> -->
+						</view>
+					</picker>
+				</view>
+			</view>
+		</view>
+
+		<!-- 备注 -->
+		<view class="mod-a mt20">
+			<view class="mod-big my-nick" style="font-size:28rpx">
+				<textarea name="remark" class="weui-textarea" placeholder="备注(选填，例如希望收到快递的时间)" value="{{content}}" style="height: 5em" bindinput="setRemark" maxlength="{{noteMaxLen}}" />
+				<view class="chnumber">{{noteMinLen}}/{{noteMaxLen}}</view>
+      </view>
+    </view>
+
+		<!-- 阅读条款 -->
+		<view class="mod-a mt20">
+			<view class='buttun-wrapper'>
+        <l-checkbox-group bind:linchange="aggreRule">
+          <l-checkbox
+            l-class="l-checkbox-color"
+            placement="left"
+            key="{{rule.name}}"
+            checked="{{rule.checked}}">
+          <view>
+            <p>我已阅读并同意<span style="color: #4dbe98" bindtap="naviToRule">《拜托了快递用户服务协议》</span>
+            </p>
+        </view>
+          </l-checkbox>
+        </l-checkbox-group>
+      </view>
+      
+			<!-- 按钮 -->
+			<content-card class="submit-button">
+				<view class="style-content">
+					<l-button l-class="button" plain formType="submit" bindtap="submitForm">发布订单</l-button>
+				</view>
+			</content-card>
+			<content-card class="submit-button">
+				<view class="style-content">
+					<l-button l-class="button" plain formType="reset" bindtap="resetForm">重置订单</l-button>
+				</view>
+			</content-card>
+		</view>
+  </form>
+
+	<view class="toast-box" hidden="{{!isHelp}}">
+    <view class="toastbg"></view>
+    <view class="showToast">
+        <view class="toast-title" style="text-align:center;">
+            <text>提示</text>
+        </view>
+        <view class="tishi">
+            <p>1.轻小件一件建议3元起</p>
+            <p>2.中件一件建议5元起</p>
+            <p>3.大件一件建议7元起</p>
+        </view>
+        <button bindtap="hideHelp" class="toast-button">知道了</button>
+    </view>
+	</view>
+
+</view>
+<l-toast />

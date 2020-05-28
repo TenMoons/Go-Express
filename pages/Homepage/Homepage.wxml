@@ -1,0 +1,34 @@
+<!-- <content-title name="SearchBar">
+  <content-card class="search-bar">
+    <l-search-bar shape="circle" placeholder="搜索" bind:lincancel="onCancel">
+    </l-search-bar>
+  </content-card>
+</content-title> -->
+
+<l-loadmore show="{{show}}" type="{{type}}" size="36" l-class="loading">
+	<view class="container" slot="content">
+		<!--通知栏组件-->
+		<l-notice-bar style="margin-bottom:20rpx" type="swip" swip-arr="{{noticeArr}}" front-icon-name="notification">
+		</l-notice-bar>
+		<!--轮播图组件-->
+		<swiper-cmp imgUrls="{{imgUrls}}" />
+		<!--订单组件-->
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+		<order-cmp />
+
+	</view>
+</l-loadmore>

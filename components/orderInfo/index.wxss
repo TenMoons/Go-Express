@@ -1,0 +1,81 @@
+
+
+.content {
+  color: #666;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+.publish-time-container{
+  margin-bottom: 2rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.time-container{
+  display: flex;
+  flex-direction: row;
+  margin-left: 40rpx;
+  align-items: center
+}
+
+.number{
+  color: #666;
+  font-size: 24rpx;
+  margin-left: 12rpx;
+}
+
+.attribute-container {
+  width           : 100%;
+  display         : flex;
+  flex-direction  : column;
+  align-items     : center;
+  border-radius   : 4px;
+  margin-top      : 5rpx;
+}
+
+.attribute-item {
+  width     : 100%;
+  margin-top: 10rpx;
+}
+
+.attribute-express-container {
+  display    : flex;
+  align-items: center;
+  margin-top : 5rpx;
+}
+
+.express-circle {
+  width        : 8rpx;
+  height       : 8rpx;
+  border       : 2rpx solid rgba(57, 99, 188, 1);
+  border-radius: 50%;
+}
+
+.express-attribute-name {
+  width          : 100rpx;
+  height         : 28rpx;
+  background     : rgba(57, 99, 188, 0.1);
+  color          : #3963bc;
+  font-size      : 20rpx;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+}
+
+.express-attribute-desc {
+  font-size  : 28rpx;
+  font-family: PingFangSC-Regular;
+  color      : rgba(89, 108, 142, 1);
+  margin-left: 16rpx;
+}
+
+.dio-img{
+  width: 220rpx;
+  height: 165rpx;
+}

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "用户服务协议",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "content-card": "/components/content-card/index"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "address-cmp": "/components/address/index"
+  },
+  "navigationBarTitleText": "我的地址"
+}

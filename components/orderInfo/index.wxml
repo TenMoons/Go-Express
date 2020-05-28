@@ -1,0 +1,66 @@
+<view>
+	<l-card type="avatar" l-class="card" image="/images/avatar/expressAvatar.png" title="{{publisherName}}" describe="信用积分:{{publisherCredit}}">
+		<view class='attribute-container'>
+			<view class='attribute-item'>
+				<!--取件地址-->
+				<view class='attribute-express-container'>
+					<view class='express-circle'></view>
+					<view class='express-attribute-name'>取件地址</view>
+					<view class='express-attribute-desc'>
+						<text>{{getExpressAddr}}</text>
+					</view>
+				</view>
+				<!--跑腿费-->
+				<view class='attribute-express-container'>
+					<view class='express-circle'></view>
+					<view class='express-attribute-name'>跑腿费</view>
+					<view class='express-attribute-desc'>
+						<text>{{expressFee}}</text>
+					</view>
+				</view>
+				<!--快递大小-->
+				<view class='attribute-express-container'>
+					<view class='express-circle'></view>
+					<view class='express-attribute-name'>快递大小</view>
+					<view class='express-attribute-desc'>
+						<text>{{expressSize}}</text>
+					</view>
+				</view>
+				<!--收货地址-->
+				<view class='attribute-express-container'>
+					<view class='express-circle'></view>
+					<view class='express-attribute-name'>收货地址</view>
+					<view class='express-attribute-desc'>
+						<text>{{receiveAddr}}</text>
+					</view>
+				</view>
+				<!--截止时间-->
+				<view class='attribute-express-container'>
+					<view class='express-circle'></view>
+					<view class='express-attribute-name'>截止时间</view>
+					<view class='express-attribute-desc'>
+						<text>{{expectedTime}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!--发布时间-->
+		<view class="publish-time-container">
+			<view class="time-container">
+				<l-icon name="time" color="#666" size="28" />
+				<view class="number">
+					<text>{{publishTime}}</text>
+				</view>
+			</view>
+		</view>
+		<l-tag wx:if="{{!status}}" bind:lintap="onShowDioTap" shape="circle" bg-color="#3963BC" font-color="#FFFFFF" slot="more" size="large">{{orderUnpick}}
+		</l-tag>
+		<l-tag wx:if="{{status}}" shape="circle" bg-color="#f3f3f3" font-color="#707070" slot="more" size="large">{{orderPicked}}
+		</l-tag>
+	</l-card>
+
+</view>
+<!--接单确认框-->
+<l-dialog show="{{currentConf.show}}" type="{{currentConf.type}}" show-close="{{currentConf.showClose}}" title="{{currentConf.title}}" show-title="{{currentConf.showTitle}}" content="{{currentConf.content}}" cancel-text="{{currentConf.cancelText}}" cancel-color="{{currentConf.cancelColor}}" confirm-text="{{currentConf.confirmText}}" confirm-color="{{currentConf.confirmColor}}" bind:lincancel="onCancelTap" bind:linconfirm="onConfirmTap">
+	<image class='dio-img' src='/images/loading.gif'></image>
+</l-dialog>

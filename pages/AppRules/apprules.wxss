@@ -1,0 +1,72 @@
+page {
+  background-color: #f3f3f3;
+}
+
+.content-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  box-sizing: border-box;
+  padding-bottom: 60rpx;
+}
+
+.content-name {
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(69, 82, 107, 1);
+  line-height: 36rpx;
+  margin-top: 10rpx;
+}
+
+.content-line {
+  width: 28rpx;
+  height: 6rpx;
+  margin-top: 16rpx;
+  margin-bottom: 10rpx;
+  background: rgba(69, 82, 107, 1);
+  border-radius: 2px;
+}
+
+.content-describe {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(140, 152, 174, 1);
+  line-height: 18rpx;
+  margin-top: 5rpx;
+  margin-bottom: 20rpx
+}
+
+.logo-container {
+  height: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30rpx;
+  padding: 40rpx 0;
+  box-sizing: border-box;
+}
+
+.logo-img {
+  width: 440rpx;
+  height: 200rpx;
+}
+
+.rule-con {
+  padding: 2%;
+  width: 96%;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.desc {
+  display       : flex;
+  flex-direction: column;
+  align-items   : center;
+  color     : #8c98ae;
+  font-size : 24rpx;
+  margin-top: 5rpx;
+}

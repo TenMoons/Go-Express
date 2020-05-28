@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "l-input": "/miniprogram_npm/lin-ui/input/index",
+    "l-button":"/miniprogram_npm/lin-ui/button/index",
+    "l-form":"/miniprogram_npm/lin-ui/form/index",
+    "l-form-item": "/miniprogram_npm/lin-ui/form-item/index",
+    "content-title": "/components/content-title/index",
+    "content-card": "/components/content-card/index"
+  },
+  "navigationBarTitleText": "新增地址"
+
+}

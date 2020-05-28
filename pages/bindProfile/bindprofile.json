@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "l-toast": "/miniprogram_npm/lin-ui/toast/index",
+    "l-icon": "/miniprogram_npm/lin-ui/icon/index",
+    "l-input": "/miniprogram_npm/lin-ui/input/index",
+    "l-button":"/miniprogram_npm/lin-ui/button/index",
+    "l-form":"/miniprogram_npm/lin-ui/form/index",
+    "l-form-item": "/miniprogram_npm/lin-ui/form-item/index"
+  },
+  "navigationBarTitleText": "绑定信息"
+}

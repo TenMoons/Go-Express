@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/myInfo/myinfo",
+    "pages/relOrder/relorder",
+    "pages/Homepage/Homepage",
+    "pages/relOrder/SelectAdd/selectadd",
+    "pages/AppRules/apprules",
+    "pages/bindProfile/bindprofile",
+    "pages/myOrders/myorders",
+    "pages/myAddress/myaddress",
+    "pages/addMyAddress/addmyaddress",
+    "pages/customerService/customerservice",
+    "pages/Developers/developers",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#eeeeee",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "拜托了快递",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#3963bc",
+    "list": [{
+        "pagePath": "pages/Homepage/Homepage",
+        "text": "首页",
+        "iconPath": "images/icons/order.png",
+        "selectedIconPath": "images/icons/order_selected.png"
+      },
+      {
+        "pagePath": "pages/relOrder/relorder",
+        "text": "发布",
+        "iconPath": "images/icons/publish_order.png",
+        "selectedIconPath": "images/icons/publish_order_selected.png"
+      },
+      {
+        "pagePath": "pages/myInfo/myinfo",
+        "text": "个人中心",
+        "iconPath": "images/icons/person.png",
+        "selectedIconPath": "images/icons/person_selected.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "即将访问您的位置"
+    }
+  }
+}

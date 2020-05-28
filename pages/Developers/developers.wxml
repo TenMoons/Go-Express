@@ -1,0 +1,42 @@
+<view class='container'>
+  <view class='logo-container'>
+    <image class='logo-img' src='/images/developers/logo.png'></image>
+  </view>
+  <view class='attribute-container'>
+    <view class='attribute-title'>开发者信息</view>
+    <view class='attribute-item'>
+      <view class='attribute-code-container'>
+        <view class='code-circle'></view>
+        <view class='code-name'>策划</view>
+        <view class='coder'>淡黄的长裙</view>
+      </view>
+      <view class='attribute-code-container'>
+        <view class='code-circle'></view>
+        <view class='code-name'>设计</view>
+        <view class='coder'>蓬松的头发</view>
+      </view>
+      <view class='attribute-code-container'>
+        <view class='code-circle'></view>
+        <view class='code-name'>研发</view>
+        <view class='coder'>就当是一场梦</view>
+      </view>
+      <view class='attribute-code-container'>
+        <view class='code-circle'></view>
+        <view class='code-name'>测试</view>
+        <view class='coder'>醒来还是很感动</view>
+      </view>
+    </view>
+  </view>
+  <view class='address-container'>
+    <view class='dot' />
+    <view class='doc-container' bindtap='copyLink' data-link="https://github.com/TenMoons/Go-Express">
+      <text class='doc-txt'>GitHub</text>
+      <text class='address'>https://github.com/TenMoons/Go-Express</text>
+    </view>
+  </view>
+  <image bindtap='onImage' src='/images/developers/qrcode.png' class='code'></image>
+  <text class='desc'>如果你也很感动</text>
+  <text class='desc'>可以给开发者打赏一个窝窝头</text>
+  <text class='desc'>蓬松的头发 · 团队作品</text>
+  <official-account class="account"></official-account>
+</view>

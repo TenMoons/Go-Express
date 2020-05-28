@@ -1,0 +1,64 @@
+<view class="self-info-container">
+	<view class="inner-info-container">
+		<view wx:if="{{!authorized}}" style="height:100%">
+			<button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="authButton">登录</button>
+		</view>
+
+		<view wx:if="{{authorized}}">
+			<l-avatar class="avatar-container" lClass="avatar" openData="{{['userAvatarUrl','userNickName']}}" shape="square" size="140"></l-avatar>
+			<view class="row-bottom">
+				<view class="bottom-container">
+					<!-- <view bind:tap="onGotoMyCredit" class="left"> -->
+					<view class="left">
+						<text>{{credit}}</text>
+						<text>信用积分</text>
+					</view>
+					<view class="v-line"></view>
+					<view bind:tap="onGotoDevelopers" class="right">
+						<l-icon class="help" name="help" size="36" color="#3963bc"></l-icon>
+						<text>关于我们</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<view class="main-container">
+	<view class="inner-order-container">
+		<view class="title-row">
+			<text>我的订单</text>
+		</view>
+		<view class="icon-row">
+			<view bind:tap="onGotoMyOrder" class="icon-item" data-key="1">
+				<l-badge maxCount="99" shape="circle" show="{{unpaidCount!==0}}" value="{{unpaidCount}}">
+					<l-icon class="iconfont daizhifu" name="1" size="36"></l-icon>
+				</l-badge>
+				<text>待支付</text>
+			</view>
+			<view bind:tap="onGotoMyOrder" class="icon-item" data-key="2">
+				<l-badge maxCount="99" shape="circle" show="{{paidCount!==0}}" value="{{paidCount}}">
+					<l-icon class="iconfont daifahuodingdan" name="1"></l-icon>
+				</l-badge>
+				<text>待派送</text>
+			</view>
+			<view bind:tap="onGotoMyOrder" class="icon-item" data-key="3">
+				<l-badge maxCount="99" shape="circle" show="{{deliveredCount!==0}}" value="{{deliveredCount}}">
+					<l-icon class="iconfont yishouhuo" name="1"></l-icon>
+				</l-badge>
+				<text>待收货</text>
+			</view>
+			<view bind:tap="onGotoMyOrder" class="icon-item" data-key="4">
+				<l-icon class="iconfont wancheng" name="1"></l-icon>
+				<text>已完成</text>
+			</view>
+		</view>
+	</view>
+
+	<view class="list">
+		<l-list bind:lintap="onGotoBindProfile" image="/images/my/profile.png" title="绑定信息"></l-list>
+		<l-list bind:lintap="onGotoMyOrder" image="/images/my/myExpress.png" title="全部订单"></l-list>
+		<l-list bind:lintap="onGotoMyAddress" image="/images/my/address.png" title="我的地址"></l-list>
+		<l-list bind:lintap="onGotoCustomerService" image="/images/my/kefu.png" title="联系客服"></l-list>
+	</view>
+</view>

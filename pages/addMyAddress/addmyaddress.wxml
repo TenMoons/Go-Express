@@ -1,0 +1,9 @@
+<content-card name="地址">
+	<view class="container">
+		{{address}}
+	</view>
+</content-card>
+
+<view class="btn">
+	<l-button size="large" bindtap="submit">添加</l-button>
+</view>

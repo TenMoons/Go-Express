@@ -1,0 +1,6 @@
+<address-cmp list="{{list}}" bind:del="del" bind:edit="edit" bind:setd="setDefault" bind:sstd="selectdefault"></address-cmp>
+
+<view style="height:20px"/>
+<view class="add">
+	<l-button class="add-btn" bindtap="addAddr" size="large">添加地址</l-button>
+</view>

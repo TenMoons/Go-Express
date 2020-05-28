@@ -1,0 +1,23 @@
+{
+  "name": "GoExpress",
+  "version": "1.0.0",
+  "description": "\"AHU software engineering course design",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TenMoons/Go-Express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TenMoons/Go-Express/issues"
+  },
+  "homepage": "https://github.com/TenMoons/Go-Express#readme",
+  "dependencies": {
+    "lin-ui": "^0.7.6"
+  }
+}

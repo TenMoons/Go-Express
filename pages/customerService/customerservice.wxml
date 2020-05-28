@@ -1,0 +1,30 @@
+<view class='container'>
+  <view class='logo-container'>
+    <image class='logo-img' src='/images/developers/logo.png'></image>
+  </view>
+  <view class='attribute-container'>
+    <view class='attribute-title'>联系方式</view>
+  </view>
+  <view class='address-container'>
+    <view class='dot' />
+    <view class='doc-container'>
+      <text class='doc-txt'>QQ</text>
+      <text class='address'>184852634</text>
+    </view>
+  </view>
+  <view class='address-container'>
+    <view class='dot' />
+    <view class='doc-container'>
+      <text class='doc-txt'>邮箱</text>
+      <text class='address'>tenmoons@foxmail.com</text>
+    </view>
+  </view>
+  <view class='address-container'>
+    <view class='dot' />
+    <view class='doc-container'>
+      <text class='doc-txt'>注意事项</text>
+      <text class='address'>举报请将有关信息截图，作为证据</text>
+    </view>
+  </view>
+  <text class='desc'>蓬松的头发 · 团队作品</text>
+</view>
