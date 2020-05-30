@@ -9,8 +9,8 @@ var currentMinute = date.getMinutes()
 
 Page({
   data: {
-    // userInfo: {},
-    user: {},
+
+    userInfo: {},
     noteMaxLen: 200, //备注最多字数
     noteMinLen: 0, //备注当前字数
     hasUserInfo: false,
@@ -117,11 +117,9 @@ Page({
 
   // 事件处理函数
   onLoad: function () {
-    if (app.globalData.user) {
-      this.setData({
-        user: app.globalData.user
-      })
-    }
+    this.setData({
+      userInfo: wx.getStorageSync('userInfo')
+    })
   },
 
   onShow: function () {
@@ -420,7 +418,7 @@ Page({
     let remark = this.data.remark // 备注
     let OrderId = date.getFullYear() + (date.getMonth()< 9 ? "0" + (date.getMonth()+1) : (date.getHours()+1))+ (date.getDate()<10?"0"+date.getDate():date.getDate()) + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + (this.second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()) + receiverPhone.substring(receiverPhone.length - 4,receiverPhone.length) // 生成订单id：时间戳+手机尾号4位
 
-    console.log("openid:" + app.globalData.userInfo.openid)
+    console.log("openid:" + this.data.userInfo.openid)
 
     console.log(receiverName)
     console.log(receiverPhone)

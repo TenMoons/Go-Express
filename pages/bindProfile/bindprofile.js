@@ -32,8 +32,6 @@ Page({
         duration: 2000
       })
     } else {
-      console.log(detail_stu_id)
-      console.log(detail_stu_name)
       wx.request({
         url: 'http://localhost:8000/student/auth',
         method: 'POST',
@@ -46,13 +44,16 @@ Page({
           'name': detail_stu_name
         },
         success: (res) => {
-          console.log(res)
           if (res.statusCode == 200) {
             wx.showToast({
               title: '认证成功',
               icon: 'success',
               duration: 1500,
             })
+            let userInfo = wx.getStorageSync('userInfo')
+            userInfo.auth_status = 1
+            userInfo.stu_id = detail_stu_id
+            wx.setStorageSync('userInfo', userInfo);
             // 回到个人主页界面
             setTimeout(function () {
               wx.navigateBack({})
