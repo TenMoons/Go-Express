@@ -1,4 +1,4 @@
-<view>
+<view class="order-item">
 	<l-card type="avatar" l-class="card" image="/images/avatar/expressAvatar.png" title="{{publisherName}}" describe="信用积分:{{publisherCredit}}">
 		<view class='attribute-container'>
 			<view class='attribute-item'>
@@ -39,7 +39,7 @@
 					<view class='express-circle'></view>
 					<view class='express-attribute-name'>截止时间</view>
 					<view class='express-attribute-desc'>
-						<text>{{expectedTime}}</text>
+						<text>{{endTime}}</text>
 					</view>
 				</view>
 			</view>

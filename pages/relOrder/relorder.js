@@ -353,26 +353,28 @@ Page({
   },
 
   bindStartMultiPickerChange: function (e) {
-    var that = this;
-    var monthDay = that.data.multiArray[0][e.detail.value[0]];
-    var hours = that.data.multiArray[1][e.detail.value[1]];
-    var minute = that.data.multiArray[2][e.detail.value[2]];
+    let that = this;
+    let monthDay = that.data.multiArray[0][e.detail.value[0]];
+    let hours = that.data.multiArray[1][e.detail.value[1]];
+    let minute = that.data.multiArray[2][e.detail.value[2]];
 
     if (monthDay === "今天") {
-      var month = date.getMonth() + 1;
-      var day = date.getDate();
+      let month = date.getMonth() + 1;
+      let day = date.getDate();
       monthDay = date.getFullYear() + "-" + month + "-" + day;
     } else if (monthDay === "明天") {
-      var date1 = new Date(date);
+      let date1 = new Date(date);
       date1.setDate(date.getDate() + 1);
       monthDay = date.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate();
 
     } else {
-      var month = monthDay.split("-")[0]; // 返回月
-      var day = monthDay.split("-")[1]; // 返回日
+      let month = monthDay.split("-")[0]; // 返回月
+      let day = monthDay.split("-")[1]; // 返回日
       monthDay = date.getFullYear() + "-" + month + "-" + day + "-";
     }
 
+    if (minute == '0')
+      minute = "00"
     let _endTime = monthDay + " " + hours + ":" + minute;
     that.setData({
       endTime: _endTime // 获取截止时间
@@ -494,35 +496,44 @@ Page({
               console.log(remark)
               console.log("订单编号" + OrderId)
               wx.request({
-                  url: app.globalData.baseurl + 'order/publish',
-                  data: {
-                    "order_id": OrderId,
-                    "rel_openid": this.data.userInfo.openid,
-                    "rel_wechat": this.data.userInfo.nickName,
-                    "publish_time": publishTime,
-                    "receive_name": receiverName,
-                    "receive_phone": receiverPhone,
-                    "receive_address": receiveAddr,
-                    "express_station": expressStation,
-                    "express_code": expressNum,
-                    "express_fee": expressFee, 
-                    "express_size": expressSize,
-                    "end_time": endTime,
-                    "remark": remark
-                  },
-                  header: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                  },
-                  method: "POST",
-                  success: (res) => {
+                url: app.globalData.baseurl + 'order/publish',
+                data: {
+                  "order_id": OrderId,
+                  "rel_openid": this.data.userInfo.openid,
+                  "rel_wechat": this.data.userInfo.nickName,
+                  "publish_time": publishTime,
+                  "receive_name": receiverName,
+                  "receive_phone": receiverPhone,
+                  "receive_address": receiveAddr,
+                  "express_station": expressStation,
+                  "express_code": expressNum,
+                  "express_fee": expressFee,
+                  "express_size": expressSize,
+                  "end_time": endTime,
+                  "remark": remark
+                },
+                header: {
+                  "Content-Type": "application/x-www-form-urlencoded"
+                },
+                method: "POST",
+                success: (res) => {
+                  if (res.statusCode == 200) {
                     wx.lin.showToast({
                       title: "发布成功",
                       icon: "success",
                       duration: 1500
                     })
+                    this.reset()
+                  } else {
+                    wx.lin.showToast({
+                      title: "发布失败",
+                      icon: "error",
+                      duration: 1500
+                    })
                   }
-              }),
-              this.reset()
+                }
+              })
+
             }
           }
         })
@@ -542,11 +553,11 @@ Page({
     // 拼接时间 hh:mm:ss
     let time = ' ' + this.supplement(obj.H) + ':' + this.supplement(obj.Mi) + ':' + this.supplement(obj.S);
     // yyyy-mm-dd
-      return obj.Y + '-' + this.supplement(obj.M) + '-' + this.supplement(obj.D) + time;
+    return obj.Y + '-' + this.supplement(obj.M) + '-' + this.supplement(obj.D) + time;
   },
 
   // 补0
-  supplement(nn){
+  supplement(nn) {
     return nn = nn < 10 ? '0' + nn : nn;
   },
 

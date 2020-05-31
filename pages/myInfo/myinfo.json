@@ -4,7 +4,8 @@
     "l-avatar":"/miniprogram_npm/lin-ui/avatar/index",
     "l-icon":"/miniprogram_npm/lin-ui/icon/index",
     "l-badge":"/miniprogram_npm/lin-ui/badge/index",
-    "l-list":"/miniprogram_npm/lin-ui/list/index"
+    "l-list":"/miniprogram_npm/lin-ui/list/index",
+    "l-dialog": "/miniprogram_npm/lin-ui/dialog/index"
   },
   "navigationBarTitleText": "个人中心"
 }

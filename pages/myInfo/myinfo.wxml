@@ -62,3 +62,5 @@
 		<l-list bind:lintap="onGotoCustomerService" image="/images/my/kefu.png" title="联系客服"></l-list>
 	</view>
 </view>
+
+<l-dialog />

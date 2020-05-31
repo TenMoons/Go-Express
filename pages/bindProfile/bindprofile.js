@@ -26,10 +26,10 @@ Page({
     console.log(openid)
     // 判断学号格式
     if (!(/^[A-Z]\d{8}$/.test(detail_stu_id))) {
-      wx.showToast({
+      wx.lin.showToast({
         title: '学号格式错误!',
-        icon: 'none',
-        duration: 2000
+        icon: 'error',
+        duration: 1200
       })
     } else {
       wx.request({
@@ -45,7 +45,7 @@ Page({
         },
         success: (res) => {
           if (res.statusCode == 200) {
-            wx.showToast({
+            wx.lin.showToast({
               title: '认证成功',
               icon: 'success',
               duration: 1500,
@@ -59,9 +59,9 @@ Page({
               wx.navigateBack({})
             }, 1500)
           } else {
-            wx.showToast({
+            wx.lin.showToast({
               title: res.data,
-              icon: 'none',
+              icon: 'error',
               duration: 1500,
             })
           }

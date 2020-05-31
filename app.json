@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/myInfo/myinfo",
-    "pages/relOrder/relorder",
     "pages/Homepage/Homepage",
+    "pages/relOrder/relorder",
+    "pages/myInfo/myinfo",
     "pages/relOrder/SelectAdd/selectadd",
     "pages/AppRules/apprules",
     "pages/bindProfile/bindprofile",

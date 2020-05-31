@@ -21,9 +21,10 @@ Page({
   onGotoBindProfile: function () {
     let isAuth = this.data.authorized
     if (!isAuth) {
-      wx.showModal({
-        title: '提示',
-        content: '请先授权微信登录！'
+      wx.lin.showDialog({
+        type: "alert",
+        title: "提示",
+        content: "请先授权微信登录！"
       })
     } else {
       wx.navigateTo({
@@ -45,9 +46,10 @@ Page({
   onGotoMyAddress: function () {
     let isAuth = this.data.authorized
     if (!isAuth) {
-      wx.showModal({
-        title: '提示',
-        content: '请先授权微信登录！'
+      wx.lin.showDialog({
+        type: "alert",
+        title: "提示",
+        content: "请先授权微信登录！"
       })
     } else {
       wx.navigateTo({

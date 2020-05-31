@@ -13,22 +13,8 @@
 		<!--轮播图组件-->
 		<swiper-cmp imgUrls="{{imgUrls}}" />
 		<!--订单组件-->
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-		<order-cmp />
-
+		<view wx:for="{{orderList}}" wx:key="index" wx:for-item="orderItem">
+			<order-cmp rel_wechat="{{orderItem.rel_wechat}}" express_station="{{orderItem.express_station}}" express_fee="{{orderItem.express_fee}}" express_size="{{orderItem.express_size}}" end_time="{{orderItem.end_time}}" receive_address="{{orderItem.receive_address}}" publish_time="{{orderItem.publish_time}}" />
+		</view>
 	</view>
 </l-loadmore>

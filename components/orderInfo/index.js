@@ -3,7 +3,30 @@ Component({
    * 组件的属性列表(开放)
    */
   properties: {
-
+    rel_wechat: {
+      type: String,
+    },
+    rel_openid: {
+      type: String
+    },
+    publish_time: {
+      type: String
+    },
+    receive_address: {
+      type: String
+    },
+    express_station: {
+      type: String
+    },
+    express_fee: {
+      type: Number
+    },
+    express_size: {
+      type: String
+    },
+    end_time: {
+      type: String
+    },
   },
 
   /**
@@ -15,7 +38,7 @@ Component({
     getExpressAddr: '', // 取件地址
     expressFee: 0, // 跑腿费
     expressSize: '', // 快递大小
-    expectedTime: '', // 期望时间
+    endTime: '', // 截止时间
     receiveAddr: '', // 收货地址
     publishTime: '', // 发布时间
     OrderStatus: 0, // 0：未接单，1：已接单，2：已送达， 3：已确认送达
@@ -64,14 +87,14 @@ Component({
     let date = new Date(timestamp)
    
     this.setData({
-      publisherName: "淡黄的头发", // 用户名
-      publisherCredit: 100, // 信用积分
-      getExpressAddr: "桔园快递中心", // 取件地址
-      expressFee: 3, // 跑腿费
-      expressSize: "小件 ≤2kg", // 快递大小
-      expectedTime: "2020-05-02 22:00", // 期望时间
-      receiveAddr: "榴园", // 收货地址
-      publishTime: date.toLocaleString()  // 发布时间
+      publisherName: this.properties.rel_wechat, // 用户名
+      publisherCredit: 90, // 信用积分
+      getExpressAddr: this.properties.express_station, // 取件地址
+      expressFee: "￥" + this.properties.express_fee, // 跑腿费
+      expressSize: this.properties.express_size, // 快递大小
+      endTime: this.properties.end_time, // 截止时间
+      receiveAddr: this.properties.receive_address, // 收货地址
+      publishTime: this.properties.publish_time  // 发布时间
     })
   },
 
@@ -79,6 +102,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
+
     // onGetExp: function () {
     //   wx.request({
     //     url: 'http://localhost:8080/GoExpress/servletdemo',

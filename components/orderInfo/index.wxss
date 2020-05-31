@@ -1,4 +1,6 @@
-
+.order-item {
+  margin-bottom: 20rpx;
+}
 
 .content {
   color: #666;

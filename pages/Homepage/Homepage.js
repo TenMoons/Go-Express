@@ -1,5 +1,4 @@
-// pages/Homepage/Homepage.js
-var page = 1;
+const app = getApp()
 
 Page({
 
@@ -14,7 +13,9 @@ Page({
     loading: true,
     index: 0,
     order: null,
-    
+
+    // 订单列表
+    orderList: [],
   },
 
   /**
@@ -28,17 +29,47 @@ Page({
   },
 
   /**
+   * 获取所有订单信息
+   */
+  queryAllOrders() {
+    let that = this
+    wx.request({
+      url: app.globalData.baseurl + 'order/index',
+      method: "GET",
+      success: res => {
+        console.log("获取订单成功")
+        res.data.forEach(element => {
+          element.publish_time = element.publish_time.replace(/T/g, ' ').substring(0, element.publish_time.length - 3)
+          element.end_time = element.end_time.replace(/T/g, ' ').substring(0, element.end_time.length - 3)
+        })
+        that.setData({
+          orderList: res.data
+        })
+        console.log(that.data.orderList)
+      }
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.queryAllOrders()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    let that = this
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.userInfo']) { //此处判断是否登录
+          app.globalData.userInfo = wx.getStorageSync('userInfo')
+          console.log(app.globalData.userInfo)
+        }
+      }
+    })
   },
 
   /**
@@ -104,6 +135,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: "安大校园快递代取平台：拜托了快递",
+      path: "/pages/Homepage/Homepage",
+      imageUrl: "",
+      success: function (e) {
+        e.errMsg;
+      },
+      fail: function () {
+        "shareAppMessage:fail cancel" == res.errMsg || res.errMsg;
+      }
+    };
   }
 })
