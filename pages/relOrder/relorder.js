@@ -361,16 +361,16 @@ Page({
     if (monthDay === "今天") {
       var month = date.getMonth() + 1;
       var day = date.getDate();
-      monthDay = month + "月" + day + "日";
+      monthDay = date.getFullYear() + "-" + month + "-" + day;
     } else if (monthDay === "明天") {
       var date1 = new Date(date);
       date1.setDate(date.getDate() + 1);
-      monthDay = (date1.getMonth() + 1) + "月" + date1.getDate() + "日";
+      monthDay = date.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate();
 
     } else {
       var month = monthDay.split("-")[0]; // 返回月
       var day = monthDay.split("-")[1]; // 返回日
-      monthDay = month + "月" + day + "日";
+      monthDay = date.getFullYear() + "-" + month + "-" + day + "-";
     }
 
     let _endTime = monthDay + " " + hours + ":" + minute;
@@ -417,7 +417,7 @@ Page({
     let endTime = this.data.endTime // 截止时间
     let remark = this.data.remark // 备注
     let OrderId = date.getFullYear() + (date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : (date.getHours() + 1)) + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + (this.second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()) + receiverPhone.substring(receiverPhone.length - 4, receiverPhone.length) // 生成订单id：时间戳+手机尾号4位
-    let publishTime = new Date().toLocaleString()
+    let publishTime = this.format(new Date())
 
     console.log(publishTime)
 
@@ -528,6 +528,26 @@ Page({
         })
       }
     }
+  },
+
+  format(Date) {
+    let obj = {
+      Y: Date.getFullYear(),
+      M: Date.getMonth() + 1,
+      D: Date.getDate(),
+      H: Date.getHours(),
+      Mi: Date.getMinutes(),
+      S: Date.getSeconds()
+    }
+    // 拼接时间 hh:mm:ss
+    let time = ' ' + this.supplement(obj.H) + ':' + this.supplement(obj.Mi) + ':' + this.supplement(obj.S);
+    // yyyy-mm-dd
+      return obj.Y + '-' + this.supplement(obj.M) + '-' + this.supplement(obj.D) + time;
+  },
+
+  // 补0
+  supplement(nn){
+    return nn = nn < 10 ? '0' + nn : nn;
   },
 
   // 重置表单信息
