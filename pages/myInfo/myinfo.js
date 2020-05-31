@@ -111,10 +111,11 @@ Page({
                     success: (res) => {
                       console.log(res)
                       if (res.statusCode == 200) {
-                        app.globalData.userInfo.openid = res.data;
-                        console.log('openid:' + app.globalData.userInfo.openid);
+                        app.globalData.userInfo.openid = res.data
+                        app.globalData.userInfo.auth_status = 0
+                        console.log('openid:' + app.globalData.userInfo.openid)
                         console.log(app.globalData.userInfo)
-                        wx.setStorageSync('userInfo', app.globalData.userInfo);
+                        wx.setStorageSync('userInfo', app.globalData.userInfo)
                       }
                     }
                   })

@@ -1,8 +1,8 @@
 //获取应用实例
 const app = getApp()
 //获取Bmob
-var Bmob = require('../../utils/bmob.js')
-var util = require('../../utils/util.js')
+var Bmob = require("../../utils/bmob.js")
+var util = require("../../utils/util.js")
 var date = new Date()
 var currentHours = date.getHours()
 var currentMinute = date.getMinutes()
@@ -14,8 +14,8 @@ Page({
     noteMaxLen: 200, //备注最多字数
     noteMinLen: 0, //备注当前字数
     hasUserInfo: false,
-    arrayAdd: ['', '九龙街华辰宾馆旁', '九龙美食街内', '桔园快递中心', '快递中心北侧快递柜', '近邻宝A区(行政楼)', '近邻宝B区(文科楼)', '近邻宝C区(南区)', '近邻宝D区(北区)', '近邻宝E区(理工楼)', '近邻宝F区(研究生院)'], // 取件地址列表
-    arraySize: ['', '大件 重量 ≥ 5kg', '中件 2kg< 重量 ≤5kg', '小件 重量 ≤ 2kg'], //快递大小件
+    arrayAdd: ["", "九龙街华辰宾馆旁", "九龙美食街内", "桔园快递中心", "快递中心北侧快递柜", "近邻宝A区(行政楼)", "近邻宝B区(文科楼)", "近邻宝C区(南区)", "近邻宝D区(北区)", "近邻宝E区(理工楼)", "近邻宝F区(研究生院)"], // 取件地址列表
+    arraySize: ["", "大件 重量 ≥ 5kg", "中件 2kg< 重量 ≤5kg", "小件 重量 ≤ 2kg"], //快递大小件
     address: "", // 选择的取件地址
     size: "", // 从列表中选择的快递大小
     expressFee: "", // 跑腿费
@@ -28,7 +28,7 @@ Page({
     endTime: "超过截止时间无人接单则自动取消", // 截止时间
     // 截止时间选择器
     multiArray: [
-      ['今天', '明天'],
+      ["今天", "明天"],
       [0, 1, 2, 3, 4, 5, 6],
       [0, 10, 20]
     ],
@@ -36,17 +36,17 @@ Page({
 
     // 条款
     rule: {
-      name: '我已阅读并同意《拜托了快递用户服务协议》',
+      name: "我已阅读并同意《拜托了快递用户服务协议》",
       checked: false
     },
     isHelp: false,
 
-    phoneRule:{
-      type: 'number',
+    phoneRule: {
+      type: "number",
       min: 11,
       max: 11,
       message: "手机号码长度为11位!",
-      trigger: 'blur'
+      trigger: "blur"
     }
   },
 
@@ -90,14 +90,14 @@ Page({
 
   inputPhone(e) {
     console.log(e.detail.value)
-    if(!(/^1(3|4|5|7|8)\d{9}$/.test(e.detail.value))) {
+    if (!(/^1(3|4|5|7|8)\d{9}$/.test(e.detail.value))) {
       wx.showToast({
-        title: '手机号码格式错误!',
-        icon: 'none',
+        title: "手机号码格式错误!",
+        icon: "none",
         duration: 1500
       })
     } else {
-        this.setData({
+      this.setData({
         receiverPhone: e.detail.value
       })
     }
@@ -118,7 +118,7 @@ Page({
   // 事件处理函数
   onLoad: function () {
     this.setData({
-      userInfo: wx.getStorageSync('userInfo')
+      userInfo: wx.getStorageSync("userInfo")
     })
   },
 
@@ -129,7 +129,7 @@ Page({
 
   //选择地址信息
   // bindAddPickerChange: function (e) {
-  //   //console.log('picker发送选择改变，携带值为', e.detail.value)
+  //   //console.log("picker发送选择改变，携带值为", e.detail.value)
   //   let add = this.data.address;
   //   this.setData({
   //     index1: e.detail.value,
@@ -150,7 +150,7 @@ Page({
 
   //选择大小件
   bindSizePickerChange: function (e) {
-    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log("picker发送选择改变，携带值为", e.detail.value)
     let size = this.data.size;
     this.setData({
       index2: e.detail.value,
@@ -172,7 +172,7 @@ Page({
   pickerTap: function () {
     date = new Date();
 
-    var monthDay = ['今天', '明天'];
+    var monthDay = ["今天", "明天"];
     var hours = [];
     var minute = [];
 
@@ -206,7 +206,7 @@ Page({
 
     var that = this;
 
-    var monthDay = ['今天', '明天'];
+    var monthDay = ["今天", "明天"];
     var hours = [];
     var minute = [];
 
@@ -252,10 +252,10 @@ Page({
 
       // 如果是第3列改变
     } else {
-      // 如果第一列为'今天'
+      // 如果第一列为"今天"
       if (data.multiIndex[0] === 0) {
 
-        // 如果第一列为 '今天'并且第二列为当前时间
+        // 如果第一列为 "今天"并且第二列为当前时间
         if (data.multiIndex[1] === 0) {
           that.loadData(hours, minute);
         } else {
@@ -416,7 +416,10 @@ Page({
     let expressStation = this.data.address // 快递站点
     let endTime = this.data.endTime // 截止时间
     let remark = this.data.remark // 备注
-    let OrderId = date.getFullYear() + (date.getMonth()< 9 ? "0" + (date.getMonth()+1) : (date.getHours()+1))+ (date.getDate()<10?"0"+date.getDate():date.getDate()) + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + (this.second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()) + receiverPhone.substring(receiverPhone.length - 4,receiverPhone.length) // 生成订单id：时间戳+手机尾号4位
+    let OrderId = date.getFullYear() + (date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : (date.getHours() + 1)) + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + (this.second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()) + receiverPhone.substring(receiverPhone.length - 4, receiverPhone.length) // 生成订单id：时间戳+手机尾号4位
+    let publishTime = new Date().toLocaleString()
+
+    console.log(publishTime)
 
     console.log("openid:" + this.data.userInfo.openid)
 
@@ -431,118 +434,132 @@ Page({
     console.log(remark)
     console.log("订单编号" + OrderId)
 
-    // 表格未填写完毕
-    if (receiverName === '' || receiverPhone === '' || receiveAddr === '' ||
-      expressFee === '' || expressSize === '' || expressStation == '' ||
-      endTime == '') {
-      wx.showModal({
-        title: '错误',
-        content: '信息未完善',
+    if (this.data.userInfo == null) {
+      wx.lin.showDialog({
+        type: "alert",
+        title: "提示",
+        content: "请先授权微信登录！"
       })
-    } else if (this.data.rule.checked == false) {
-      wx.showModal({
-        title: '提示',
-        content: '请先阅读并同意服务条款',
+    } else if (this.data.userInfo.auth_status != 1) {
+      wx.lin.showDialog({
+        type: "alert",
+        title: "提示",
+        content: "请先进行身份认证！"
       })
     } else {
-      wx.showModal({
-        title: '您要发布的订单信息：',
-        content: '收货人：' + receiverName +
-          '手机号：' + receiverPhone +
-          '快递大小：' + expressSize +
-          '金额：' + expressFee +
-          '收货地址：' + receiveAddr +
-          '快递站点：' + expressStation +
-          '取件码：' + expressNum +
-          '截止时间' + endTime +
-          '备注：' + remark,
-        success: res => {
-          wx.showToast({
-            title: '提交订单成功',
-            icon: 'success',
-            duration: 2000
-          })
-          // if (res.confirm) {
-          //   //支付界面
-          //   wx.showToast({
-          //     title: '成功',
-          //     duration: 5000,
-          //     success: function () {
-          //       setTimeout(function () {
-          //         var Order = Bmob.Object.extend("order");
-          //         var order = new Order();
-          //         var date = new Date();
-          //         //获取年月日时分秒
-          //         order.set("orderId", "" + date.getFullYear() + (date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : (date.getHours() + 1)) + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + (this.second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()) + phone.substring(phone.length - 8, phone.length - 4));
-          //         order.set("receiverName", name);
-          //         order.set("receiverPhone", phone);
-          //         order.set("size", size);
-          //         order.set("expressFee", expressFee);
-          //         order.set("receiverAddress", address);
-          //         order.set("start", start);
-          //         order.set("remark", remark);
-          //         order.set("orderStatus", status);
-          //         order.set("receiverId", user.id);
-          //         order.set("receiverAvatarUrl", user.avatarUrl);
-          //         console.log(user.avatarUrl)
-          //         order.set("transerId", "");
-          //         order.set("transerAvatarUrl", "");
-          //         order.set("transerPhone", "");
-          //         order.save(null, {
-          //           success: function (result) {
-          //             // 添加成功,返回每个order的objectId(和user的openId完全是两回事)
-          //             console.log("订单创建成功, objectId:" + result.id);
-          //           },
-          //           error: function (result, error) {
-          //             // 添加失败
-          //             console.log('订单日记失败');
-          //             console.log(error)
-          //           }
-          //         });
+      // 表格未填写完毕
+      if (receiverName === "" || receiverPhone === "" || receiveAddr === "" ||
+        expressFee === "" || expressSize === "" || expressStation == "" ||
+        endTime == "") {
+        wx.lin.showDialog({
+          type: "alert",
+          title: "提示",
+          content: "信息未完善"
+        })
+      } else if (this.data.rule.checked == false) {
+        wx.lin.showDialog({
+          type: "alert",
+          title: "提示",
+          content: "请先阅读并同意服务条款"
+        })
+      } else {
+        wx.lin.showDialog({
+          type: "confirm",
+          title: "确认订单信息",
+          content: "收货人：" + receiverName +
+            "\n手机号：" + receiverPhone +
+            "\n快递大小：" + expressSize +
+            "\n金额：" + expressFee +
+            "\n收货地址：" + receiveAddr +
+            "\n快递站点：" + expressStation +
+            "\n取件码：" + expressNum +
+            "\n截止时间" + endTime +
+            "\n备注：" + remark,
 
-          //         wx.switchTab({
-          //           url: "../Search/search",
-          //         })
-          //       }, 2000)
-
-          //     }
-          //   })
-          // } 
-          // else if (res.cancel) {
-          //   //失败
-          // }
-        }
-      })
+          success: res => {
+            if (res.confirm) {
+              wx.lin.showToast({
+                title: "发布订单中",
+                icon: "loading",
+                duration: 1500
+              })
+              console.log(receiverName)
+              console.log(receiverPhone)
+              console.log(receiveAddr)
+              console.log(expressFee)
+              console.log(expressNum)
+              console.log(expressSize)
+              console.log(expressStation)
+              console.log(endTime)
+              console.log(remark)
+              console.log("订单编号" + OrderId)
+              wx.request({
+                  url: app.globalData.baseurl + 'order/publish',
+                  data: {
+                    "order_id": OrderId,
+                    "rel_openid": this.data.userInfo.openid,
+                    "rel_wechat": this.data.userInfo.nickName,
+                    "publish_time": publishTime,
+                    "receive_name": receiverName,
+                    "receive_phone": receiverPhone,
+                    "receive_address": receiveAddr,
+                    "express_station": expressStation,
+                    "express_code": expressNum,
+                    "express_fee": expressFee, 
+                    "express_size": expressSize,
+                    "end_time": endTime,
+                    "remark": remark
+                  },
+                  header: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                  },
+                  method: "POST",
+                  success: (res) => {
+                    wx.lin.showToast({
+                      title: "发布成功",
+                      icon: "success",
+                      duration: 1500
+                    })
+                  }
+              }),
+              this.reset()
+            }
+          }
+        })
+      }
     }
-
   },
 
   // 重置表单信息
   resetForm: function (e) {
-    console.log(e)
+    this.reset()
+  },
+
+  reset() {
     this.setData({
       noteMinLen: 0,
       index2: 0,
       index3: 0,
-      address: '',
-      receiverName: '',
-      receiverPhone: '',
+      address: "",
+      receiverName: "",
+      receiverPhone: "",
+      receiveAddr: "",
       expressFee: "",
+      expressNum: "",
       endTime: "超过截止时间无人接单则自动取消",
       multiArray: [
-        ['今天', '明天'],
+        ["今天", "明天"],
         [0, 1, 2, 3, 4, 5, 6],
         [0, 10, 20]
       ],
       multiIndex: [0, 0, 0],
       remark: "", //备注
     })
-
   },
 
   bindPersonInfo: function () {
     wx.navigateTo({
-      url: './SelectAdd/selectadd',
+      url: "./SelectAdd/selectadd",
       success: function (res) {
 
       },
@@ -560,8 +577,8 @@ function getAddressList(t) {
   var Address = Bmob.Object.extend("address");
   var query = new Bmob.Query(Address);
   query.limit(1000);
-  query.descending('createdAt');
-  query.equalTo('userid', t.data.user.id);
+  query.descending("createdAt");
+  query.equalTo("userid", t.data.user.id);
   query.find({
     success: function (results) {
       // 循环处理查询到的数据
