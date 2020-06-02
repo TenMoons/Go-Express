@@ -42,6 +42,14 @@
 						<text>{{endTime}}</text>
 					</view>
 				</view>
+				<!--备注-->
+				<view class='attribute-express-container'>
+					<view class='express-circle'></view>
+					<view class='express-attribute-name'>备注</view>
+					<view class='express-attribute-desc'>
+						<text>{{remark}}</text>
+					</view>
+				</view>
 			</view>
 		</view>
 		<!--发布时间-->
@@ -53,9 +61,9 @@
 				</view>
 			</view>
 		</view>
-		<l-tag wx:if="{{!status}}" bind:lintap="onShowDioTap" shape="circle" bg-color="#3963BC" font-color="#FFFFFF" slot="more" size="large">{{orderUnpick}}
+		<l-tag wx:if="{{!orderStatus}}" bind:lintap="onShowDioTap" shape="circle" bg-color="#3963BC" font-color="#FFFFFF" slot="more" size="large">{{orderUnpick}}
 		</l-tag>
-		<l-tag wx:if="{{status}}" shape="circle" bg-color="#f3f3f3" font-color="#707070" slot="more" size="large">{{orderPicked}}
+		<l-tag wx:if="{{orderStatus}}" shape="circle" bg-color="#f3f3f3" font-color="#707070" slot="more" size="large">{{orderPicked}}
 		</l-tag>
 	</l-card>
 
@@ -64,3 +72,5 @@
 <l-dialog show="{{currentConf.show}}" type="{{currentConf.type}}" show-close="{{currentConf.showClose}}" title="{{currentConf.title}}" show-title="{{currentConf.showTitle}}" content="{{currentConf.content}}" cancel-text="{{currentConf.cancelText}}" cancel-color="{{currentConf.cancelColor}}" confirm-text="{{currentConf.confirmText}}" confirm-color="{{currentConf.confirmColor}}" bind:lincancel="onCancelTap" bind:linconfirm="onConfirmTap">
 	<image class='dio-img' src='/images/loading.gif'></image>
 </l-dialog>
+
+<l-toast />

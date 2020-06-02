@@ -1,8 +1,6 @@
 //获取应用实例
 const app = getApp()
 //获取Bmob
-var Bmob = require("../../utils/bmob.js")
-var util = require("../../utils/util.js")
 var date = new Date()
 var currentHours = date.getHours()
 var currentMinute = date.getMinutes()
@@ -605,35 +603,35 @@ Page({
 
 //获取地址信息
 function getAddressList(t) {
-  var Address = Bmob.Object.extend("address");
-  var query = new Bmob.Query(Address);
-  query.limit(1000);
-  query.descending("createdAt");
-  query.equalTo("userid", t.data.user.id);
-  query.find({
-    success: function (results) {
-      // 循环处理查询到的数据
-      //console.log(results);
-      let arr = []
-      for (var i in results) {
-        let a = {}
+  // var Address = Bmob.Object.extend("address");
+  // var query = new Bmob.Query(Address);
+  // query.limit(1000);
+  // query.descending("createdAt");
+  // query.equalTo("userid", t.data.user.id);
+  // query.find({
+  //   success: function (results) {
+  //     // 循环处理查询到的数据
+  //     //console.log(results);
+  //     let arr = []
+  //     for (var i in results) {
+  //       let a = {}
 
-        a.address = results[i].attributes.address;
-        a.userid = results[i].attributes.userid;
-        a.username = results[i].attributes.username
-        a.userphone = results[i].attributes.userphone
-        a.userinfo = results[i].attributes.username + " " + results[i].attributes.userphone;
-        a.objectId = results[i].id
-        arr.push(a)
-      }
+  //       a.address = results[i].attributes.address;
+  //       a.userid = results[i].attributes.userid;
+  //       a.username = results[i].attributes.username
+  //       a.userphone = results[i].attributes.userphone
+  //       a.userinfo = results[i].attributes.username + " " + results[i].attributes.userphone;
+  //       a.objectId = results[i].id
+  //       arr.push(a)
+  //     }
 
-      t.setData({
-        itemData: arr
-      })
+  //     t.setData({
+  //       itemData: arr
+  //     })
 
-    },
-    error: function (error) {
-      console.log("查询失败: " + error.code + " " + error.message);
-    }
-  });
+  //   },
+  //   error: function (error) {
+  //     console.log("查询失败: " + error.code + " " + error.message);
+  //   }
+  // });
 }

@@ -1,7 +1,7 @@
 import {
   MyModel
 } from "../../models/my.js"
-var amapFile = require('../../utils/amap-wx.js');
+
 const myModel = new MyModel
 
 Page({

@@ -4,5 +4,7 @@
     "l-notice-bar": "../../miniprogram_npm/lin-ui/notice-bar/index",
     "order-cmp": "/components/orderInfo/index",
     "swiper-cmp": "/components/swiper/index"
-  }
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
 }
