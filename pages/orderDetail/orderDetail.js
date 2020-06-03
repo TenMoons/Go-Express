@@ -8,21 +8,24 @@ Page({
   data: {
     order: {}, // 当前订单
 
+
+
     privacy: {}, // 隐私信息 
   },
 
   // 获取当前订单信息
   queryOrderDetail() {
     let that = this
+    let userInfo = wx.getStorageSync('userInfo')
     wx.request({
       url: app.globalData.baseurl + 'order/detail',
       method: "GET",
       data: {
         "order_id": that.data.order.order_id,
-        "user_openid": app.globalData.userInfo.openid, // 当前查看用户的openid，用于判断隐私信息查看权限
+        "user_openid": userInfo.openid, // 当前查看用户的openid，用于判断隐私信息查看权限
       },
       success: res => {
-        if (res.statusCode == 200) {    
+        if (res.statusCode == 200) {   
           that.setData({
             privacy: res.data
           })
@@ -49,8 +52,8 @@ Page({
     })
     console.log("获取订单详情成功")
     this.data.order.express_fee = this.data.order.express_fee.substring(1, this.data.order.express_fee.length)
-    console.log(this.data.order)
     this.queryOrderDetail()
+    console.log(this.data.order)
   },
 
   /**

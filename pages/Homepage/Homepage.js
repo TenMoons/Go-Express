@@ -40,6 +40,12 @@ Page({
         res.data.forEach(element => {
           element.publish_time = element.publish_time.replace(/T/g, ' ').substring(0, element.publish_time.length - 3)
           element.end_time = element.end_time.replace(/T/g, ' ').substring(0, element.end_time.length - 3)
+          if (element.taker_time != null) {
+            element.taker_time = element.taker_time.replace(/T/g, ' ').substring(0, element.taker_time.length - 3)
+          }
+          if (element.finish_time != null) {
+            element.finish_time = element.finish_time.replace(/T/g, ' ').substring(0, element.finish_time.length - 3)
+          } 
         })
         that.setData({
           orderList: res.data

@@ -138,6 +138,40 @@ Component({
       }
     },
 
+    // 接单信息
+    taker_time: {
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          takerTime: newData
+        })
+      }
+    },
+    taker_wechat:{
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          takerWechat: newData
+        })
+      }
+    },
+    taker_credit: {
+      type: Number,
+      observer: function(newData, oldData) {
+        this.setData({
+          takerCredit: newData
+        })
+      }
+    },
+    finish_time: {
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          finishTime: newData
+        })
+      }
+    },
+
   },
 
   /**
@@ -160,6 +194,12 @@ Component({
     receiveName: '', // 收件人姓名
     receivePhone: '', // 收件人手机号
     expressCode: '', // 取件码
+
+    // 接单信息
+    takerTime: '',
+    finishTime: '',
+    takerCredit: '',
+    takerWechat: '',
 
     orderUnpick: '我要代拿', // 暂无人接单
     orderPicked: '已接单', // 有人接单
@@ -199,10 +239,11 @@ Component({
 
       // 隐私信息
       orderId: this.properties.order_id, // 订单编号
-      relOpenid: this.properties.rel_openid, // 发布者openid
-      receiveName: this.properties.receive_name, // 收件人姓名
-      receivePhone: this.properties.receive_phone, // 收件人手机号
-      expressCode: this.properties.express_code, // 取件码
+
+      takerTime: this.properties.taker_time,
+      finishTime: this.properties.finish_time,
+      takerWechat: this.properties.taker_wechat,
+      takerCredit: this.properties.taker_credit,
 
       hasSlideView: this.properties.hasSlideView,
     })
@@ -296,6 +337,10 @@ Component({
         "end_time": this.data.endTime,
         "order_status": this.data.orderStatus,
         "remark": this.data.remark,
+        "taker_time": this.data.takerTime,
+        "finish_time": this.data.finishTime,
+        "taker_wechat": this.data.takerWechat,
+        "taker_credit": this.data.takerCredit
       }
       wx.navigateTo({
         url: '/pages/orderDetail/orderDetail?data=' + JSON.stringify(order),

@@ -1,7 +1,9 @@
 {
   "usingComponents": {
     "order-cmp": "/components/orderInfo/index",
-    "order-detail-cmp": "/components/orderdetail/index"
+    "order-detail-cmp": "/components/orderdetail/index",
+    "l-card": "/miniprogram_npm/lin-ui/card/index",
+    "l-tag": "/miniprogram_npm/lin-ui/tag/index"
   },
   "navigationBarTitleText": "订单详情"
 }

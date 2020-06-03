@@ -1,12 +1,18 @@
 <view>
-	<order-cmp order_id="{{order.order_id}}" rel_wechat="{{order.rel_wechat}}" express_station="{{order.express_station}}" 
-  express_fee="{{order.express_fee}}" express_size="{{order.express_size}}" end_time="{{order.end_time}}" 
-  receive_address="{{order.receive_address}}" publish_time="{{order.publish_time}}" order_status="{{order.order_status}}" 
-  remark="{{order.remark == '' ? '-' : order.remark}}" hasSlideView="{{false}}" rel_credit="{{order.rel_credit}}" />
+	<order-cmp order_id="{{order.order_id}}" rel_wechat="{{order.rel_wechat}}" express_station="{{order.express_station}}" express_fee="{{order.express_fee}}" express_size="{{order.express_size}}" end_time="{{order.end_time}}" receive_address="{{order.receive_address}}" publish_time="{{order.publish_time}}" order_status="{{order.order_status}}" remark="{{order.remark == '' ? '-' : order.remark}}" hasSlideView="{{false}}" rel_credit="{{order.rel_credit}}" />
 
 	<image src="/images/icons/line.png" class="gap-line"></image>
-
-	<order-detail-cmp order_id="{{order.order_id}}" order_status="{{order.order_status}}"  publish_time="{{order.publish_time}}"
-  receive_name="{{privacy.receive_name}}" receive_phone="{{privacy.receive_phone}}" 
-  express_code="{{privacy.express_code}}" />
+	<!--接单者信息-->
+  <view style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 18rpx;">
+    <text class="tips">接单者信息</text>
+  </view>
+  
+	<view class="taker-item">
+		<l-card type="avatar" l-class="card" image="/images/avatar/taker.png" title="{{order.taker_wechat == '' ? '-' : order.taker_wechat}}" describe="信用积分:{{order.taker_credit }}">
+		</l-card>
+	</view>
+  <!--隐私信息-->
+	<order-detail-cmp order_id="{{order.order_id}}" order_status="{{order.order_status}}" publish_time="{{order.publish_time}}" receive_name="{{privacy.receive_name}}" receive_phone="{{privacy.receive_phone}}" taker_time="{{order.taker_time}}" finish_time="{{order.finish_time}}" express_code="{{privacy.express_code}}" />
 </view>
+
+<l-toast />
