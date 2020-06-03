@@ -7,62 +7,135 @@ Component({
   properties: {
     rel_wechat: {
       type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          publisherName: newData
+        })
+        // 避免异步
+      }
     },
-    rel_openid: {
-      type: String
+    rel_credit: {
+      type: Number,
+      observer: function(newData, oldData) {
+        this.setData({
+          publisherCredit: newData
+        })
+      }
     },
     publish_time: {
-      type: String
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          publishTime: newData
+        })
+      }
     },
     receive_address: {
-      type: String
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          receiveAddr: newData
+        })
+      }
     },
     express_station: {
-      type: String
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          getExpressAddr: newData
+        })
+      }
     },
     express_fee: {
-      type: Number
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          expressFee: newData
+        })
+      }
     },
     express_size: {
-      type: String
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          expressSize: newData
+        })
+      }
     },
     end_time: {
-      type: String
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          endTime: newData
+        })
+      }
     },
     order_status: {
-      type: Number
+      type: Number,
+      observer: function(newData, oldData) {
+        this.setData({
+          orderStatus: newData
+        })
+      }
     },
     remark: {
-      type: String
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          remark: newData
+        })
+      }
     },
 
     // 订单详情页面才会显示的信息
     order_id: {
-      type: String
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          orderId: newData
+        })
+      }
     },
     rel_openid: {
-      type: String
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          relOpenid: newData
+        })
+      }
     },
     receive_name: {
-      type: String
+      type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          receiveName: newData
+        })
+      }
     },
     receive_phone: {
       type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          receivePhone: newData
+        })
+      }
     },
     express_code: {
-      type: String
-    },
-    taker_openid: {
       type: String,
+      observer: function(newData, oldData) {
+        this.setData({
+          expressCode: newData
+        })
+      }
     },
-    taker_wechat: {
-      type: String
-    },
-    taker_time: {
-      type: String
-    },
-    finish_time: {
-      type: String
+    // 是否显示slide-view
+    hasSlideView: {
+      type: Boolean,
+      observer: function(newData, oldData) {
+        this.setData({
+          hasSlideView: newData
+        })
+      }
     },
 
   },
@@ -72,18 +145,15 @@ Component({
    */
   data: {
     publisherName: '', // 用户名
-    publisherCredit: 0, // 信用积分
+    publisherCredit: '', // 发布者信用积分
     getExpressAddr: '', // 取件地址
-    expressFee: 0, // 跑腿费
+    expressFee: '', // 跑腿费
     expressSize: '', // 快递大小
     endTime: '', // 截止时间
     receiveAddr: '', // 收货地址
     publishTime: '', // 发布时间
     orderStatus: '', // 订单状态：是否有人接单
     remark: '', // 备注
-    orderUnpick: '我要代拿', // 暂无人接单
-    orderPicked: '已接单', // 有人接单
-
     // 隐私信息
     orderId: '', // 订单编号
     relOpenid: '', // 发布者openid
@@ -91,11 +161,10 @@ Component({
     receivePhone: '', // 收件人手机号
     expressCode: '', // 取件码
 
-    // 接单信息
-    taker_openid: '', // 接单者openid
-    taker_wechat: '', // 接单者微信名
-    taker_time: '', // 接单时间
-    finish_time: '', // 完成时间
+    orderUnpick: '我要代拿', // 暂无人接单
+    orderPicked: '已接单', // 有人接单
+
+    hasSlideView: true,
 
     navConfig: {
       config: {
@@ -110,20 +179,6 @@ Component({
         cancelColor: '#999'
       }
     },
-
-    activeIndex: 0, // 步骤条  
-
-    statusInfo: {
-      0: '待接单',
-      1: '已接单',
-      2: '已送达',
-      3: '已完成', // 即已确认送达
-      4: '已取消',
-    },
-
-    currentConf: {
-
-    }
   },
 
   /**
@@ -132,17 +187,16 @@ Component({
   attached: function () {
     this.setData({
       publisherName: this.properties.rel_wechat, // 用户名
-      publisherCredit: 90, // 信用积分
+      publisherCredit: this.properties.rel_credit, // 发布者信用积分
       getExpressAddr: this.properties.express_station, // 取件地址
       expressFee: "￥" + this.properties.express_fee, // 跑腿费
       expressSize: this.properties.express_size, // 快递大小
       endTime: this.properties.end_time, // 截止时间
       receiveAddr: this.properties.receive_address, // 收货地址
       publishTime: this.properties.publish_time, // 发布时间
-      orderStatus: this.properties.order_status == 0 ? false : true,
+      orderStatus: this.properties.order_status,
       remark: this.properties.remark,
 
-      // 隐私信息
       // 隐私信息
       orderId: this.properties.order_id, // 订单编号
       relOpenid: this.properties.rel_openid, // 发布者openid
@@ -150,11 +204,7 @@ Component({
       receivePhone: this.properties.receive_phone, // 收件人手机号
       expressCode: this.properties.express_code, // 取件码
 
-      // 接单信息
-      taker_openid: this.properties.taker_openid, // 接单者openid
-      taker_wechat: this.properties.taker_wechat, // 接单者微信名
-      taker_time: this.properties.taker_time, // 接单时间
-      finish_time: this.properties.finish_time, // 完成时间
+      hasSlideView: this.properties.hasSlideView,
     })
   },
 
@@ -166,7 +216,8 @@ Component({
     // 显示是否接单确认框
     onShowDioTap(e) {
       // 已接单的屏蔽按钮点击事件
-      if (this.data.orderStatus == true) {
+      console.log(this.data.orderStatus)
+      if (this.data.orderStatus == 1) {
         return
       }
       const config = JSON.parse(JSON.stringify(this.data.navConfig.config))
@@ -178,9 +229,7 @@ Component({
     // 确定按钮
     onConfirmTap(e) {
       console.log(e)
-      this.setData({
-        orderStatus: true
-      })
+      this.data.order_status = 1
       let openid = wx.getStorageSync('userInfo').openid
       let wechat_name = wx.getStorageSync('userInfo').nickName
       let taker_time = this.format(new Date())
@@ -225,15 +274,34 @@ Component({
 
     // 取消按钮
     onCancelTap(e) {
-      this.setData({
-        orderStatus: false
-      })
+      this.data.order_status = 0
       wx.lin.showToast({
         title: '点击了取消～',
         icon: 'error',
         duration: 1200
       })
     },
+
+    // 跳转到详情页
+    goToDetail(e) {
+      let order = {
+        "order_id": this.data.orderId,
+        "rel_wechat": this.data.publisherName,
+        "rel_credit": this.data.publisherCredit,
+        "publish_time": this.data.publishTime,
+        "receive_address": this.data.receiveAddr,
+        "express_station": this.data.getExpressAddr,
+        "express_fee": this.data.expressFee,
+        "express_size": this.data.expressSize,
+        "end_time": this.data.endTime,
+        "order_status": this.data.orderStatus,
+        "remark": this.data.remark,
+      }
+      wx.navigateTo({
+        url: '/pages/orderDetail/orderDetail?data=' + JSON.stringify(order),
+      })
+    },
+
 
     format(Date) {
       let obj = {

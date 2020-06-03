@@ -113,8 +113,9 @@ Page({
                     success: (res) => {
                       console.log(res)
                       if (res.statusCode == 200) {
-                        app.globalData.userInfo.openid = res.data
-                        app.globalData.userInfo.auth_status = 0
+                        app.globalData.userInfo.openid = res.data.openid
+                        app.globalData.userInfo.auth_status = 1
+                        app.globalData.userInfo.credit = res.data.credit
                         console.log('openid:' + app.globalData.userInfo.openid)
                         console.log(app.globalData.userInfo)
                         wx.setStorageSync('userInfo', app.globalData.userInfo)
@@ -150,6 +151,23 @@ Page({
             userInfo: wx.getStorageSync('userInfo')
           })
           console.log(that.data.userInfo)
+          // wx.request({
+          //   url: app.globalData.baseurl + 'user/credit',
+          //   method: 'GET',
+          //   data: {
+          //     "openid": that.data.userInfo.openid
+          //   },
+          //   success:res => {
+          //     console.log('信用积分' + res.data)
+          //     that.setData({
+          //       userInfo:{
+          //         credit: res.data
+          //       }
+          //     })
+          //     wx.setStorageSync('userInfo', that.data.userInfo)
+          //   }
+          // })
+          // console.log(that.data.userInfo)
         }
       }
     })

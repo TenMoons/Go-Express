@@ -81,13 +81,3 @@
   width: 220rpx;
   height: 165rpx;
 }
-
-.right {
-  display: flex;
-  height: 460rpx;
-  text-align: center;
-  justify-content: center;
-  background: #3963bc;
-  color: #fff;
-  font-size: 28rpx;
-}

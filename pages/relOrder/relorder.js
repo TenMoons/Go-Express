@@ -418,6 +418,8 @@ Page({
     let remark = this.data.remark // 备注
     let OrderId = date.getFullYear() + (date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : (date.getHours() + 1)) + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + (this.second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()) + receiverPhone.substring(receiverPhone.length - 4, receiverPhone.length) // 生成订单id：时间戳+手机尾号4位
     let publishTime = this.format(new Date())
+    let rel_credit = this.data.userInfo.rel_credit
+    console.log(rel_credit)
 
     console.log(publishTime)
 
@@ -508,7 +510,8 @@ Page({
                   "express_fee": expressFee,
                   "express_size": expressSize,
                   "end_time": endTime,
-                  "remark": remark
+                  "remark": remark,
+                  "rel_credit": rel_credit
                 },
                 header: {
                   "Content-Type": "application/x-www-form-urlencoded"

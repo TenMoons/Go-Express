@@ -11,7 +11,8 @@
     "pages/addMyAddress/addmyaddress",
     "pages/customerService/customerservice",
     "pages/Developers/developers",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/orderDetail/orderDetail"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -23,7 +24,8 @@
   "tabBar": {
     "color": "#bfbfbf",
     "selectedColor": "#3963bc",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/Homepage/Homepage",
         "text": "首页",
         "iconPath": "images/icons/order.png",

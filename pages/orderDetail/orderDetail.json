@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "order-cmp": "/components/orderInfo/index",
+    "order-detail-cmp": "/components/orderdetail/index"
+  },
+  "navigationBarTitleText": "订单详情"
+}

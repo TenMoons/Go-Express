@@ -37,7 +37,6 @@ Page({
       url: app.globalData.baseurl + 'order/index',
       method: "GET",
       success: res => {
-        console.log("获取订单成功")
         res.data.forEach(element => {
           element.publish_time = element.publish_time.replace(/T/g, ' ').substring(0, element.publish_time.length - 3)
           element.end_time = element.end_time.replace(/T/g, ' ').substring(0, element.end_time.length - 3)
@@ -66,7 +65,6 @@ Page({
       success: (res) => {
         if (res.authSetting['scope.userInfo']) { //此处判断是否登录
           app.globalData.userInfo = wx.getStorageSync('userInfo')
-          console.log(app.globalData.userInfo)
         }
       }
     })

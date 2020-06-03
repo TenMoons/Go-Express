@@ -8,7 +8,6 @@
     "l-steps": "/miniprogram_npm/lin-ui/steps/index",
     "l-step": "/miniprogram_npm/lin-ui/step/index",
     "content-card": "/components/content-card/index",
-    "l-toast": "/miniprogram_npm/lin-ui/toast/index",
-    "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index"
+    "l-toast": "/miniprogram_npm/lin-ui/toast/index"
   }
 }

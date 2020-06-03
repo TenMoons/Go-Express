@@ -3,7 +3,8 @@
     "l-loadmore": "../../miniprogram_npm/lin-ui/loadmore/index",
     "l-notice-bar": "../../miniprogram_npm/lin-ui/notice-bar/index",
     "order-cmp": "/components/orderInfo/index",
-    "swiper-cmp": "/components/swiper/index"
+    "swiper-cmp": "/components/swiper/index",
+    "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index"
   },
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark"
