@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    noticeArr: ['欢迎使用「拜托了快递」微信小程序~', '温馨提示：跑腿费最好不低于2元，避免无人接单'], // 通知栏
+    noticeArr: ['欢迎使用「拜托了快递」微信小程序~', '温馨提示：跑腿费最好不低于2元，避免无人接单', '左滑订单，查看订单详情'], // 通知栏
     imgUrls: ['/images/1.jpg', '/images/3.jpg', '/images/9.jpg'], // 轮播图  277px*186px
     currentIndex: 0,
     show: false,

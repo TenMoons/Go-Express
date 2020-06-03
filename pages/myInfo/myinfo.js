@@ -7,7 +7,6 @@ Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     userInfo: {},
-    credit: 90,
     authorized: false,
     code: app.globalData.code,
     unpaidCount: 0,

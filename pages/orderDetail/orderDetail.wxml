@@ -6,6 +6,7 @@
 
 	<image src="/images/icons/line.png" class="gap-line"></image>
 
-	<order-detail-cmp order_id="{{order.order_id}}" receive_name="{{privacy.receive_name}}" receive_phone="{{privacy.receive_phone}}" 
+	<order-detail-cmp order_id="{{order.order_id}}" order_status="{{order.order_status}}"  publish_time="{{order.publish_time}}"
+  receive_name="{{privacy.receive_name}}" receive_phone="{{privacy.receive_phone}}" 
   express_code="{{privacy.express_code}}" />
 </view>

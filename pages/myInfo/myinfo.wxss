@@ -19,23 +19,25 @@
 .yishouhuo:before {
   content: "\e617";
   color: #3963bc;
-  size: 56rpx;
+  font-size: 48rpx;
 }
 
 .daifahuodingdan:before {
   content: "\e61b";
   color: #3963bc;
-  size: 56rpx;
+  font-size: 48rpx;
 }
 
 .wancheng:before {
   content: "\e610";
   color: #3963bc;
+  font-size: 42rpx;
 }
 
 .daizhifu:before {
   content: "\e61c";
   color: #3963bc;
+  font-size: 40rpx;
 }
 
 

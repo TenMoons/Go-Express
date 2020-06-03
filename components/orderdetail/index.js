@@ -53,6 +53,14 @@ Component({
         })
       }
     },
+    publish_time: {
+      type: String,
+      observer: function (newData, oldData) {
+        this.setData({
+          publishTime: newData
+        })
+      }
+    },
     // 是否显示slide-view
     hasSlideView: {
       type: Boolean,
@@ -92,12 +100,21 @@ Component({
    */
   data: {
     orderStatus: '', // 订单状态：是否有人接单
+    publishTime: '',  // 发布时间
     // 隐私信息
     orderId: '', // 订单编号
     relOpenid: '', // 发布者openid
     receiveName: '', // 收件人姓名
     receivePhone: '', // 收件人手机号
     expressCode: '', // 取件码
+
+    // 接单信息
+    taker_openid: '', // 接单者openid
+    taker_wechat: '', // 接单者微信名
+    taker_time: '', // 接单时间
+    finish_time: '', // 完成时间
+    taker_credit: '', // 接单者credit
+
 
     orderUnpick: '我要代拿', // 暂无人接单
     orderPicked: '已接单', // 有人接单

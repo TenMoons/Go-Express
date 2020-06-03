@@ -1,4 +1,12 @@
 <view class="order-item">
+	<view style="margin-bottom: 30rpx">
+		<l-steps active-index="{{orderStatus}}">
+			<l-step title="发布订单" describe="{{publishTime}}"></l-step>
+			<l-step title="接单" describe="{{taker_time=='' ? '-' : taker_time}}"></l-step>
+			<l-step title="已完成" describe="{{finish_time == '' ? '-' : finish_time}}"></l-step>
+		</l-steps>
+	</view>
+
 	<l-card type="avatar" l-class="card" image="/images/avatar/privacy.png" title="快递隐私信息">
 		<view class='attribute-container'>
 			<view class='attribute-item'>
