@@ -1,45 +1,62 @@
-// pages/relOrder/SelectAdd/selectadd.js
-Page({
+const app = getApp()
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-
+    userInfo: {},
+    addressList: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function (e) {
+    let that = this;
+    that.setData({
+      userInfo: wx.getStorageSync('userInfo')
+    })
+    this.queryAllAddress()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  // 获取当前用户的所有地址
+  queryAllAddress() {
+    let that = this
+    let openid = this.data.userInfo.openid
+    wx.request({
+      url: app.globalData.baseurl + 'address/index',
+      method: "GET",
+      data: {
+        "openid": openid,
+      },
+      success: res => {
+        console.log(res)
+        if (res.statusCode == 200) {
+          that.setData({
+            addressList: res.data
+          })
+        } else if (res.statusCode == 201) {
+          wx.lin.showToast({
+            title: '暂时还没有地址噢，快去添加吧~',
+            duration: 1500
+          })
+        }
+      }
+    })
+  },
 
+  addAddr: function (e) {
+    wx.navigateTo({
+      url: '/pages/addMyAddress/addmyaddress',
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+    
 
   },
 
@@ -47,20 +64,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      addressList: []
+    })
+    this.queryAllAddress()
+    wx.stopPullDownRefresh()
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

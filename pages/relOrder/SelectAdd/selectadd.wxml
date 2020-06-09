@@ -1,2 +1,11 @@
-<!--pages/relOrder/SelectAdd/selectadd.wxml-->
-<text>pages/relOrder/SelectAdd/selectadd.wxml</text>
+<block wx:for="{{addressList}}" wx:key="index" wx:for-item="addressItem" data-item="{{addressItem}}">
+	<address-cmp openid="{{addressItem.openid}}" address="{{addressItem.address}}" isUse="{{true}}"/>
+</block>
+
+<view style="height:20px" />
+<view class="add">
+	<l-button class="add-btn" bindtap="addAddr" size="large">添加地址</l-button>
+</view>
+
+<l-toast />
+<l-dialog />

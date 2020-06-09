@@ -1,6 +1,11 @@
-<address-cmp list="{{list}}" bind:del="del" bind:edit="edit" bind:setd="setDefault" bind:sstd="selectdefault"></address-cmp>
+<block wx:for="{{addressList}}" wx:key="index" wx:for-item="addressItem" data-item="{{addressItem}}">
+	<address-cmp openid="{{addressItem.openid}}" address="{{addressItem.address}}" isUse="{{false}}"/>
+</block>
 
-<view style="height:20px"/>
+<view style="height:20px" />
 <view class="add">
 	<l-button class="add-btn" bindtap="addAddr" size="large">添加地址</l-button>
 </view>
+
+<l-toast />
+<l-dialog />

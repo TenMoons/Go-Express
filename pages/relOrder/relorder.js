@@ -125,27 +125,6 @@ Page({
 
   },
 
-  //选择地址信息
-  // bindAddPickerChange: function (e) {
-  //   //console.log("picker发送选择改变，携带值为", e.detail.value)
-  //   let add = this.data.address;
-  //   this.setData({
-  //     index1: e.detail.value,
-  //     address: this.data.arrayAdd[e.detail.value],
-
-  //   })
-  //   //console.log(this.data.address)
-  //   if (this.data.progressPercent === 100) {
-  //     this.setData({
-  //       disabled: false
-  //     })
-  //   } else {
-  //     this.setData({
-  //       disabled: true
-  //     })
-  //   }
-  // },
-
   //选择大小件
   bindSizePickerChange: function (e) {
     // console.log("picker发送选择改变，携带值为", e.detail.value)
@@ -381,13 +360,8 @@ Page({
 
   // 调用地图API
   selectAdd: function (e) {
-    let that = this
-    wx.chooseLocation({
-      success: function (res) {
-        that.setData({
-          receiveAddr: res.name
-        })
-      },
+    wx.navigateTo({
+      url: '../relOrder/SelectAdd/selectadd',
     })
   },
 

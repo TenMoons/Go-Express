@@ -85,7 +85,7 @@
             key="{{rule.name}}"
             checked="{{rule.checked}}">
           <view>
-            <p>我已阅读并同意<span style="color: #4dbe98" bindtap="naviToRule">《拜托了快递用户服务协议》</span>
+            <p>我已阅读并同意<span style="color: #00c6a0" bindtap="naviToRule">《拜托了快递用户服务协议》</span>
             </p>
         </view>
           </l-checkbox>

@@ -1,4 +1,4 @@
-<content-card name="地址">
+<content-card name="地址" bindtap="getLocation">
 	<view class="container">
 		{{address}}
 	</view>
@@ -7,3 +7,5 @@
 <view class="btn">
 	<l-button size="large" bindtap="submit">添加</l-button>
 </view>
+
+<l-toast />

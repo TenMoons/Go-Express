@@ -12,7 +12,7 @@ Page({
     unpaidCount: 0,
     paidCount: 0,
     deliveredCount: 0,
-  
+
   },
   /**
    * 绑定信息
@@ -31,14 +31,25 @@ Page({
       })
     }
   },
+
   /**
    * 我的订单
    */
   onGotoMyOrder: function () {
-    wx.navigateTo({
-      url: "/pages/myOrders/myorders",
-    })
+    let isAuth = this.data.authorized
+    if (!isAuth) {
+      wx.lin.showDialog({
+        type: "alert",
+        title: "提示",
+        content: "请先授权微信登录！"
+      })
+    } else {
+      wx.navigateTo({
+        url: "/pages/myOrders/myorders",
+      })
+    }
   },
+
   /**
    * 我的地址
    */
@@ -80,12 +91,10 @@ Page({
           this.setData({
             authorized: true
           })
-          // app.globalData.authorized = this.data.authorized
-          console.log("已授权")
+
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: (res1) => {
-              console.log(res1.userInfo)
               this.setData({
                 userInfo: res1.userInfo
               })
@@ -97,7 +106,6 @@ Page({
                     code: res.code
                   })
                   app.globalData.code = this.data.code // 为全局变量赋值
-                  console.log('app.code =' + this.data.code)
                   wx.request({
                     url: app.globalData.baseurl + 'user/wxLogin',
                     data: {
@@ -110,13 +118,10 @@ Page({
                     },
                     method: "POST",
                     success: (res) => {
-                      console.log(res)
                       if (res.statusCode == 200) {
                         app.globalData.userInfo.openid = res.data.openid
                         app.globalData.userInfo.auth_status = 1
                         app.globalData.userInfo.credit = res.data.credit
-                        console.log('openid:' + app.globalData.userInfo.openid)
-                        console.log(app.globalData.userInfo)
                         wx.setStorageSync('userInfo', app.globalData.userInfo)
                       }
                     }
@@ -143,7 +148,7 @@ Page({
   onLoad: function (options) {
     let that = this
     wx.getSetting({
-      success:(res) => {
+      success: (res) => {
         if (res.authSetting['scope.userInfo']) { //此处判断是否登录
           that.setData({
             authorized: true,

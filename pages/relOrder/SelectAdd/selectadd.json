@@ -1,3 +1,12 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "l-toast": "/miniprogram_npm/lin-ui/toast/index",
+    "l-dialog": "/miniprogram_npm/lin-ui/dialog/index",
+    "content-title": "/components/content-title/index",
+    "content-card": "/components/content-card/index",
+    "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index",
+    "address-cmp": "/components/address/index"
+  },
+  "navigationBarTitleText": "选择收货地址"
 }

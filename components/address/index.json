@@ -1,6 +1,12 @@
 {
   "component": true,
   "usingComponents": {
-    "i-icon":"../icon/index"
+    "i-icon":"../icon/index",
+    "l-toast": "/miniprogram_npm/lin-ui/toast/index",
+    "l-dialog": "/miniprogram_npm/lin-ui/dialog/index",
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "content-title": "/components/content-title/index",
+    "content-card": "/components/content-card/index",
+    "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index"
   }
 }

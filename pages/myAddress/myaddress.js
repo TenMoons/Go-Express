@@ -1,80 +1,69 @@
-import { MyModel } from '../../models/my.js'
-const myModel = new MyModel
-Page({
+const app = getApp()
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-
-  },
-
-  addAddr:function(e) {
-    wx.navigateTo({
-      url: '/pages/addMyAddress/addmyaddress',
-    })
-  },
-
-  _load:function() {
-    myModel.get_address((res)=>{
-      this.setData({
-        list:res
-      }) 
-      wx.hideLoading()
-    })
+    userInfo: {},
+    addressList: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    wx.showLoading()
-    this._load()
+  onLoad: function (e) {
+    let that = this;
+    that.setData({
+      userInfo: wx.getStorageSync('userInfo')
+    })
+    this.queryAllAddress()
+  },
+
+  // 获取当前用户的所有地址
+  queryAllAddress() {
+    this.setData({
+      addressList: []
+    })
+    let that = this
+    let openid = this.data.userInfo.openid
+    wx.request({
+      url: app.globalData.baseurl + 'address/index',
+      method: "GET",
+      data: {
+        "openid": openid,
+      },
+      success: res => {
+        console.log(res)
+        if (res.statusCode == 200) {
+          that.setData({
+            addressList: res.data
+          })
+        } else if (res.statusCode == 201) {
+          wx.lin.showToast({
+            title: '暂时还没有地址噢，快去添加吧~',
+            duration: 1500
+          })
+        }
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.showLoading()
-    this._load()
+    this.queryAllAddress()
   },
-  del(trigger){
-    const id = trigger.detail;
-    myModel.del_address(id, (res)=>{
-      this._load()
-      wx.showToast({
-        title: '成功',
-        icon: 'success',
-        duration: 2000
-      }) 
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    this.setData({
+      addressList: []
     })
-  }, 
-  edit(trigger) {
-    const id = trigger.detail;
-    // wx.navigateTo({
-    //   url: 'create_address/index?id='+id
-    // }) 
+    this.queryAllAddress()
+    wx.stopPullDownRefresh()
   },
-  //设置默认地址
-  setDefault(trigger) { 
-    const id = trigger.detail
-    myModel.setDefault(id, (res)=>{
-      wx.showToast({
-        title:'成功',
-        icon:'success'
-      })  
-      setTimeout(function () {
-        wx.navigateBack({
-        })
-      }, 1000)         
-    })    
-  },
-  //点击默认地址本身
-  selectdefault(trigger) {  
-    setTimeout(function () {
-      wx.navigateBack({
-      })
-    }, 1000)
-  }
 })

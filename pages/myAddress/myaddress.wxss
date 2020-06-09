@@ -2,6 +2,14 @@ page{
   background-color: #f5f5f5;
 }
 
+.container{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  font-size: 32rpx;
+}
+
 .add {
   display: flex;
   flex-direction: column;
@@ -11,5 +19,14 @@ page{
 
 .add-btn {
   align-items: center;
+}
 
+.right {
+  display: flex;
+  height: 182rpx;
+  text-align: center;
+  justify-content: center;
+  background: #F4516C;
+  color: #fff;
+  font-size: 28rpx;
 }

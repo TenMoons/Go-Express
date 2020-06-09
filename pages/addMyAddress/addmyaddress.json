@@ -5,7 +5,8 @@
     "l-form":"/miniprogram_npm/lin-ui/form/index",
     "l-form-item": "/miniprogram_npm/lin-ui/form-item/index",
     "content-title": "/components/content-title/index",
-    "content-card": "/components/content-card/index"
+    "content-card": "/components/content-card/index",
+    "l-toast": "/miniprogram_npm/lin-ui/toast/index"
   },
   "navigationBarTitleText": "新增地址"
 
