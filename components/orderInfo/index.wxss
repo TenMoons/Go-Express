@@ -90,4 +90,5 @@
   background: #3963bc;
   color: #fff;
   font-size: 28rpx;
+  margin-top: 10rpx;
 }

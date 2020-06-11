@@ -3,16 +3,30 @@
 
 	<image src="/images/icons/line.png" class="gap-line"></image>
 	<!--接单者信息-->
-  <view style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 18rpx;">
-    <text class="tips">接单者信息</text>
-  </view>
-  
+	<view style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 18rpx;">
+		<text class="tips">接单者信息</text>
+	</view>
+
 	<view class="taker-item">
 		<l-card type="avatar" l-class="card" image="/images/avatar/taker.png" title="{{order.taker_wechat == '' ? '-' : order.taker_wechat}}" describe="信用积分:{{order.taker_credit }}">
 		</l-card>
 	</view>
-  <!--隐私信息-->
+	<!--隐私信息-->
 	<order-detail-cmp order_id="{{order.order_id}}" order_status="{{order.order_status}}" publish_time="{{order.publish_time}}" receive_name="{{privacy.receive_name}}" receive_phone="{{privacy.receive_phone}}" taker_time="{{order.taker_time}}" finish_time="{{order.finish_time}}" express_code="{{privacy.express_code}}" />
+
+	<!--送达按钮-->
+	<view wx:if="{{identity == 1 && order.order_status == 1}}" class="handle-btn">
+		<l-button size="large" type="success" bind:lintap="confirmDelivery">确认送达</l-button>
+	</view>
+	<view wx:if="{{identity == 0 && (order.order_status == 0 || order.order_status == 1)}}" class="handle-btn">
+		<l-button size="large" type="success" l-class="btn-gap" bind:lintap="confirmReceipt" wx:if="{{order.order_status == 1}}">确认收货</l-button>
+		<l-button size="large" type="warning" l-class="btn-gap" bind:lintap="cancelOrder" wx:if="{{order.order_status == 0}}">取消订单</l-button>
+	</view>
+	<view wx:if="{{(identity == 0 || identity == 1) && (order.order_status == 2 || order.order_status == 3)}}" class="handle-btn">
+		<l-button size="large" type="default" bind:lintap="evaluate">评价</l-button>
+	</view>
+
 </view>
 
+<l-dialog />
 <l-toast />

@@ -144,7 +144,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: "安大校园快递代取平台：拜托了快递",
+      title: "拜托了快递-AHUer自己的校园快递代取平台",
       path: "/pages/Homepage/Homepage",
       imageUrl: "",
       success: function (e) {

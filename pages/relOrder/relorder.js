@@ -393,22 +393,6 @@ Page({
     let OrderId = date.getFullYear() + (date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : (date.getHours() + 1)) + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + (this.second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()) + receiverPhone.substring(receiverPhone.length - 4, receiverPhone.length) // 生成订单id：时间戳+手机尾号4位
     let publishTime = this.format(new Date())
     let rel_credit = this.data.userInfo.rel_credit
-    console.log(rel_credit)
-
-    console.log(publishTime)
-
-    console.log("openid:" + this.data.userInfo.openid)
-
-    console.log(receiverName)
-    console.log(receiverPhone)
-    console.log(receiveAddr)
-    console.log(expressFee)
-    console.log(expressNum)
-    console.log(expressSize)
-    console.log(expressStation)
-    console.log(endTime)
-    console.log(remark)
-    console.log("订单编号" + OrderId)
 
     if (this.data.userInfo == null) {
       wx.lin.showDialog({
@@ -459,16 +443,7 @@ Page({
                 icon: "loading",
                 duration: 1500
               })
-              console.log(receiverName)
-              console.log(receiverPhone)
-              console.log(receiveAddr)
-              console.log(expressFee)
-              console.log(expressNum)
-              console.log(expressSize)
-              console.log(expressStation)
-              console.log(endTime)
-              console.log(remark)
-              console.log("订单编号" + OrderId)
+
               wx.request({
                 url: app.globalData.baseurl + 'order/publish',
                 data: {
@@ -578,37 +553,3 @@ Page({
 
 })
 
-//获取地址信息
-function getAddressList(t) {
-  // var Address = Bmob.Object.extend("address");
-  // var query = new Bmob.Query(Address);
-  // query.limit(1000);
-  // query.descending("createdAt");
-  // query.equalTo("userid", t.data.user.id);
-  // query.find({
-  //   success: function (results) {
-  //     // 循环处理查询到的数据
-  //     //console.log(results);
-  //     let arr = []
-  //     for (var i in results) {
-  //       let a = {}
-
-  //       a.address = results[i].attributes.address;
-  //       a.userid = results[i].attributes.userid;
-  //       a.username = results[i].attributes.username
-  //       a.userphone = results[i].attributes.userphone
-  //       a.userinfo = results[i].attributes.username + " " + results[i].attributes.userphone;
-  //       a.objectId = results[i].id
-  //       arr.push(a)
-  //     }
-
-  //     t.setData({
-  //       itemData: arr
-  //     })
-
-  //   },
-  //   error: function (error) {
-  //     console.log("查询失败: " + error.code + " " + error.message);
-  //   }
-  // });
-}

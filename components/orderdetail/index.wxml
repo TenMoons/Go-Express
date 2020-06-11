@@ -3,7 +3,7 @@
 		<l-steps active-index="{{orderStatus}}">
 			<l-step title="发布订单" describe="{{publishTime}}"></l-step>
 			<l-step title="接单" describe="{{taker_time=='' ? '-' : taker_time}}"></l-step>
-			<l-step title="已完成" describe="{{finish_time == '' ? '-' : finish_time}}"></l-step>
+			<l-step title="已送达" describe="{{finish_time == '' ? '-' : finish_time}}"></l-step>
 		</l-steps>
 	</view>
 

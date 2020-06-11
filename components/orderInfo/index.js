@@ -270,19 +270,18 @@ Component({
     // 确定按钮
     onConfirmTap(e) {
       console.log(e)
-      this.data.order_status = 1
+      this.setData({
+        orderStatus: 1
+      })
       let openid = wx.getStorageSync('userInfo').openid
       let wechat_name = wx.getStorageSync('userInfo').nickName
       let taker_time = this.format(new Date())
+      let taker_credit = wx.getStorageSync('userInfo').credit
       wx.lin.showToast({
         title: ' 接单中...',
         icon: 'loading',
         duration: 1000
       })
-      console.log(this.properties.order_id)
-      console.log(openid)
-      console.log(wechat_name)
-      console.log(taker_time)
       wx.request({
         url: 'http://localhost:8000/order/takeOrder',
         method: 'POST',
@@ -293,7 +292,8 @@ Component({
           'taker_openid': openid,
           'taker_wechat': wechat_name,
           'order_id': this.properties.order_id,
-          'taker_time': taker_time
+          'taker_time': taker_time,
+          'taker_credit': taker_credit
         },
         success: res => {
           if (res.statusCode == 200) {
@@ -302,6 +302,8 @@ Component({
               icon: 'success',
               duration: 1500
             })
+            let pages = getCurrentPages()
+            pages[pages.length - 1].queryAllOrders()
           } else {
             wx.lin.showToast({
               title: '接单失败:(',

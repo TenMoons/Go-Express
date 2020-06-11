@@ -74,18 +74,43 @@ Component({
     // 接单信息
     taker_openid: {
       type: String,
+      observer: function (newData, oldData) {
+        this.setData({
+          taker_openid: newData
+        })
+      }
     },
     taker_wechat: {
-      type: String
+      type: String,
+      observer: function (newData, oldData) {
+        this.setData({
+          taker_wechat: newData
+        })
+      }
     },
     taker_credit: {
-      type: Number
+      type: Number,
+      observer: function (newData, oldData) {
+        this.setData({
+          taker_credit: newData
+        })
+      }
     },
     taker_time: {
-      type: String
+      type: String,
+      observer: function (newData, oldData) {
+        this.setData({
+          taker_time: newData
+        })
+      }
     },
     finish_time: {
-      type: String
+      type: String,
+      observer: function (newData, oldData) {
+        this.setData({
+          finish_time: newData
+        })
+      }
     },
 
     // 是否显示slide-view
