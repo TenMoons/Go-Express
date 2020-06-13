@@ -538,18 +538,5 @@ Page({
     })
   },
 
-  bindPersonInfo: function () {
-    wx.navigateTo({
-      url: "./SelectAdd/selectadd",
-      success: function (res) {
-
-      },
-      fail: function (res) {
-
-      },
-      complete: function (res) {},
-    })
-  }
-
 })
 

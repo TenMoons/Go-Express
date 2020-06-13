@@ -89,7 +89,7 @@ Page({
   },
 
   // 确认收货按钮事件
-  confirmReceipt: e => {
+  confirmReceipt(e) {
     wx.lin.showDialog({
       type: "confirm",
       title: "提示",
@@ -127,7 +127,7 @@ Page({
   },
 
   // 取消订单按钮事件
-  cancelOrder: e => {
+  cancelOrder(e) {
     wx.lin.showDialog({
       type: "confirm",
       title: "提示",
@@ -146,10 +146,17 @@ Page({
             },
             success: res => {
               if (res.statusCode == 200) {
+                // 刷新首页
+                let pages = getCurrentPages()
+                let prevPage = pages[pages.length - 2]
+                prevPage.queryAllOrders()
                 wx.lin.showToast({
                   title: '取消订单成功!',
                   icon: 'success',
                   duration: 1500
+                })
+                wx.navigateTo({
+                  url: '/pages/Homepage/Homepage',
                 })
               }
             }

@@ -5,7 +5,8 @@
     "order-cmp": "/components/orderInfo/index",
     "swiper-cmp": "/components/swiper/index",
     "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index",
-    "l-search-bar": "/miniprogram_npm/lin-ui/search-bar/index"
+    "l-search-bar": "/miniprogram_npm/lin-ui/search-bar/index",
+    "top-cmp": "/components/gotop/index"
   },
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark"

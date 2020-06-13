@@ -12,4 +12,6 @@
 		</view>
 	</l-loadmore>
 
+	<top-cmp />
+
 </view>

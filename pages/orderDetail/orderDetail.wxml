@@ -18,7 +18,7 @@
 	<view wx:if="{{identity == 1 && order.order_status == 1}}" class="handle-btn">
 		<l-button size="large" type="success" bind:lintap="confirmDelivery">确认送达</l-button>
 	</view>
-	<view wx:if="{{identity == 0 && (order.order_status == 0 || order.order_status == 1)}}" class="handle-btn">
+	<view wx:if="{{identity == 0}}" class="handle-btn">
 		<l-button size="large" type="success" l-class="btn-gap" bind:lintap="confirmReceipt" wx:if="{{order.order_status == 1}}">确认收货</l-button>
 		<l-button size="large" type="warning" l-class="btn-gap" bind:lintap="cancelOrder" wx:if="{{order.order_status == 0}}">取消订单</l-button>
 	</view>

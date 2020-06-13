@@ -1,0 +1,7 @@
+<view class="doc-container" bindtap="toTop">
+	<l-button special="{{true}}" open-type="to-top">
+		<!-- 此处是插槽自定义内容 -->
+		<l-icon name="to-top" />
+	</l-button>
+	<!-- <image src='/images/doc.png' l-class='doc-img'></image> -->
+</view>

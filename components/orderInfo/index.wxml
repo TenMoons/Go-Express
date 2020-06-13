@@ -1,4 +1,4 @@
-<l-slide-view height="490" width="750" slide-width="150" auto-close="{{true}}">
+<l-slide-view height="490" width="750" slide-width="150" auto-close="{{true}}" disabled="{{hasSlideView ? false :true}}">
 	<view slot="left" class="order-item">
 		<l-card type="avatar" l-class="card" image="/images/avatar/expressAvatar.png" title="{{publisherName}}" describe="信用积分:{{publisherCredit}}">
 			<view class='attribute-container'>
@@ -68,7 +68,7 @@
 			</l-tag>
 		</l-card>
 	</view>
-	<view wx:if="{{hasSlideView}}" slot="right" bindtap="goToDetail" class="right">
+	<view slot="right" bindtap="goToDetail" class="right">
 		<text style="display:flex;align-items:center; justify-content:center;">查看详情</text>
 	</view>
 </l-slide-view>
