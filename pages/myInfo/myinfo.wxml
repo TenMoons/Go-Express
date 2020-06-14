@@ -15,7 +15,7 @@
 					</view>
 					<view class="v-line"></view>
 					<view bind:tap="onGotoDevelopers" class="right">
-						<l-icon class="help" name="help" size="36" color="#3963bc"></l-icon>
+						<l-icon class="iconfont iconkaifazhezhongxingonggongAPI" name="1" color="#3963bc"></l-icon>
 						<text>关于我们</text>
 					</view>
 				</view>
@@ -32,24 +32,28 @@
 		<view class="icon-row">
 			<view bind:tap="onGotoMyOrder" class="icon-item" data-key="1">
 				<l-badge maxCount="99" shape="circle" show="{{unpaidCount!==0}}" value="{{unpaidCount}}">
-					<l-icon class="iconfont daizhifu" name="1"></l-icon>
+					<l-icon class="iconfont iconjieshou" name="1"></l-icon>
 				</l-badge>
-				<text>待支付</text>
+				<text>我接收的</text>
 			</view>
 			<view bind:tap="onGotoMyOrder" class="icon-item" data-key="2">
 				<l-badge maxCount="99" shape="circle" show="{{paidCount!==0}}" value="{{paidCount}}">
-					<l-icon class="iconfont daifahuodingdan" name="1"></l-icon>
+					<l-icon class="iconfont iconwofabude" name="1"></l-icon>
 				</l-badge>
-				<text>待派送</text>
+				<text>我发布的</text>
 			</view>
 			<view bind:tap="onGotoMyOrder" class="icon-item" data-key="3">
 				<l-badge maxCount="99" shape="circle" show="{{deliveredCount!==0}}" value="{{deliveredCount}}">
-					<l-icon class="iconfont yishouhuo" name="1"></l-icon>
+					<l-icon class="iconfont iconnavicon-chps" name="1"></l-icon>
 				</l-badge>
+				<text>待派送</text>
+			</view>
+			<view bind:tap="onGotoMyOrder" class="icon-item" data-key="4">
+				<l-icon class="iconfont iconjiedanzhong" name="1"></l-icon>
 				<text>待收货</text>
 			</view>
 			<view bind:tap="onGotoMyOrder" class="icon-item" data-key="4">
-				<l-icon class="iconfont wancheng" name="1"></l-icon>
+				<l-icon class="iconfont iconyiwancheng" name="1"></l-icon>
 				<text>已完成</text>
 			</view>
 		</view>

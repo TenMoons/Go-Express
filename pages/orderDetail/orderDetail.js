@@ -45,6 +45,7 @@ Page({
   // 确认送达按钮事件
   confirmDelivery(e) {
     let that = this
+    let finish_time = this.format(new Date())
     wx.lin.showDialog({
       type: "confirm",
       title: "提示",
@@ -53,11 +54,13 @@ Page({
       success: res => {
         if (res.confirm) {
           console.log(that.data.order.order_id)
+          this.data.order.finish_time = finish_time
           wx.request({
             url: app.globalData.baseurl + 'order/delivery',
             method: 'POST',
             data: {
               'order_id': that.data.order.order_id,
+              'finish_time': finish_time
             },
             header: {
               "Content-Type": "application/x-www-form-urlencoded"
@@ -174,6 +177,26 @@ Page({
   // 评价
   evaluate(e) {
 
+  },
+
+  format(Date) {
+    let obj = {
+      Y: Date.getFullYear(),
+      M: Date.getMonth() + 1,
+      D: Date.getDate(),
+      H: Date.getHours(),
+      Mi: Date.getMinutes(),
+      S: Date.getSeconds()
+    }
+    // 拼接时间 hh:mm:ss
+    let time = ' ' + this.supplement(obj.H) + ':' + this.supplement(obj.Mi) + ':' + this.supplement(obj.S);
+    // yyyy-mm-dd
+    return obj.Y + '-' + this.supplement(obj.M) + '-' + this.supplement(obj.D) + time;
+  },
+
+  // 补0
+  supplement(nn) {
+    return nn = nn < 10 ? '0' + nn : nn;
   },
 
   /**
