@@ -7,7 +7,7 @@
 		</l-steps>
 	</view>
 
-	<l-card type="avatar" l-class="card" image="/images/avatar/privacy.png" title="快递隐私信息">
+	<l-card type="avatar" l-class="card" image="/images/avatar/privacy.png" title="快递隐私信息" describe="订单编号: {{orderId}}">
 		<view class='attribute-container'>
 			<view class='attribute-item'>
 				<!--收件人姓名-->

@@ -1,1 +1,9 @@
-<status show bg-color="{{bgColor}}" button-text="{{buttonText}}" image="{{image}}" describe="{{describe}}" type="{{type}}"/>
+<view wx:if="{{isempty}}" class="emptyorder-status">
+  <status show bg-color="{{bgColor}}" button-text="{{buttonText}}" image="{{image}}" describe="{{describe}}" type="{{type}}"/>
+</view>
+<view wx:else class="self-order-container">
+		<!--订单组件-->
+		<view slot="content" style="margin-top: 18rpx" wx:for="{{myorderList}}" wx:key="index" wx:for-item="orderItem" data-item="{{orderItem}}">
+			<order-cmp order_id="{{orderItem.order_id}}" rel_wechat="{{orderItem.rel_wechat}}" express_station="{{orderItem.express_station}}" express_fee="{{orderItem.express_fee}}" express_size="{{orderItem.express_size}}" end_time="{{orderItem.end_time}}" receive_address="{{orderItem.receive_address}}" publish_time="{{orderItem.publish_time}}" order_status="{{orderItem.order_status}}" remark="{{orderItem.remark == '' ? '-' : orderItem.remark}}" hasSlideView="{{true}}" rel_credit="{{orderItem.rel_credit}}" taker_time="{{orderItem.taker_time}}" taker_wechat="{{orderItem.taker_wechat}}" taker_credit="{{orderItem.taker_credit}}" finish_time="{{orderItem.finish_time}}" hasSlideView="{{false}}" has_btn="{{false}}" />
+		</view>
+</view>

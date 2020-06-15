@@ -9,11 +9,11 @@ Page({
     userInfo: {},
     authorized: false,
     code: app.globalData.code,
-    unpaidCount: 0,
-    paidCount: 0,
-    deliveredCount: 0,
-
+    orderscount:[0,0,0,0], //用户各种类型订单数量列表
+    optiontype:"",
+    orderstate:[0,1,2,3,4,5],   //订单状态,1我接收的，2代派送，3待收货，4已完成，5我发布的，0全部订单
   },
+
   /**
    * 绑定信息
    */
@@ -35,7 +35,12 @@ Page({
   /**
    * 我的订单
    */
-  onGotoMyOrder: function () {
+  onGotoMyOrder: function (e) {
+    this.setData({
+      optiontype: this.data.orderstate[e.currentTarget.dataset.key],
+    })
+    let type = this.data.optiontype;
+    // 以下部分用于实现用户查看相关订单后取消红点提示
     let isAuth = this.data.authorized
     if (!isAuth) {
       wx.lin.showDialog({
@@ -45,7 +50,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: "/pages/myOrders/myorders",
+        url: "/pages/myOrders/myorders?optiontype=" + type,
       })
     }
   },
@@ -67,17 +72,28 @@ Page({
       })
     }
   },
+
+  /**
+   * 关于我们
+   */
   onGotoDevelopers: function () {
     wx.navigateTo({
       url: "/pages/Developers/developers",
     })
   },
+
+  /**
+   * 联系客服
+   */
   onGotoCustomerService: function () {
     wx.navigateTo({
       url: "/pages/customerService/customerservice",
     })
   },
 
+  /**
+   * 获取个人信息
+   */
   onGotUserInfo: function (e) {
     this.GetUserInfo()
   },
@@ -143,6 +159,28 @@ Page({
   },
 
   /**
+   * 获取用户订单数量
+   */
+  queryCountOrders() {
+    let userinfo = this.data.userInfo
+    let that = this
+    wx.request({
+      url: app.globalData.baseurl + 'order/my/count',//myorders
+      method: "GET",
+      data: {
+        "user_openid": userinfo.openid, //获取当前用户的openid,用于筛选订单
+      },
+      success: res => {
+        console.log(res)
+        that.setData({
+          orderscount: res.data
+        })
+        console.log(that.data.orderscount)
+      }
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
@@ -155,23 +193,7 @@ Page({
             userInfo: wx.getStorageSync('userInfo')
           })
           console.log(that.data.userInfo)
-          // wx.request({
-          //   url: app.globalData.baseurl + 'user/credit',
-          //   method: 'GET',
-          //   data: {
-          //     "openid": that.data.userInfo.openid
-          //   },
-          //   success:res => {
-          //     console.log('信用积分' + res.data)
-          //     that.setData({
-          //       userInfo:{
-          //         credit: res.data
-          //       }
-          //     })
-          //     wx.setStorageSync('userInfo', that.data.userInfo)
-          //   }
-          // })
-          // console.log(that.data.userInfo)
+          that.queryCountOrders()
         }
       }
     })

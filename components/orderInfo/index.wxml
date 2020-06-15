@@ -62,9 +62,9 @@
 					</view>
 				</view>
 			</view>
-			<l-tag wx:if="{{orderStatus == 0}}" bind:lintap="onShowDioTap" shape="circle" bg-color="#3963BC" font-color="#FFFFFF" slot="more" size="large">{{orderUnpick}}
+			<l-tag wx:if="{{orderStatus == 0 && hasBtn}}" bind:lintap="onShowDioTap" shape="circle" bg-color="#3963BC" font-color="#FFFFFF" slot="more" size="large">{{orderUnpick}}
 			</l-tag>
-			<l-tag wx:else shape="circle" bg-color="#f3f3f3" font-color="#707070" slot="more" size="large">{{orderPicked}}
+			<l-tag wx:if="{{orderStatus != 0 && hasBtn}}" shape="circle" bg-color="#f3f3f3" font-color="#707070" slot="more" size="large">{{orderPicked}}
 			</l-tag>
 		</l-card>
 	</view>

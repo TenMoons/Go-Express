@@ -53,8 +53,6 @@ Page({
 
       success: res => {
         if (res.confirm) {
-          console.log(that.data.order.order_id)
-          this.data.order.finish_time = finish_time
           wx.request({
             url: app.globalData.baseurl + 'order/delivery',
             method: 'POST',
@@ -68,9 +66,12 @@ Page({
             success: (res) => {
               if (res.statusCode == 200) {
                 this.setData({
-                  'order.order_status': res.data
+                  'order.order_status': res.data,
+                  'order.finish_time': finish_time,
                 })
-                console.log('订单状态：' + that.data.order.order_status)
+                let pages = getCurrentPages()
+                pages[pages.length - 1].queryOrderDetail()
+                pages[pages.length - 2].queryAllOrders()
                 wx.lin.showToast({
                   title: '确认送达成功!',
                   icon: 'success',
@@ -111,6 +112,9 @@ Page({
             },
             success: res => {
               if (res.statusCode == 200) {
+                let pages = getCurrentPages()
+                pages[pages.length - 1].queryOrderDetail()
+                pages[pages.length - 2].queryAllOrders()
                 wx.lin.showToast({
                   title: '确认收货成功!',
                   icon: 'success',
@@ -151,8 +155,8 @@ Page({
               if (res.statusCode == 200) {
                 // 刷新首页
                 let pages = getCurrentPages()
-                let prevPage = pages[pages.length - 2]
-                prevPage.queryAllOrders()
+                pages[pages.length - 1].queryOrderDetail()
+                pages[pages.length - 2].queryAllOrders()
                 wx.lin.showToast({
                   title: '取消订单成功!',
                   icon: 'success',
@@ -176,7 +180,70 @@ Page({
 
   // 评价
   evaluate(e) {
-
+    let that = this
+    wx.lin.showDialog({
+      type: "confirm",
+      title: "评价",
+      content: "您对此次订单是否满意？",
+      confirmText: "满意",
+      cancelText: "不满意",
+      confirmColor: '#f60',
+      cancelColor: '#999',
+      success: res => {
+        //好评
+        if (res.confirm) {
+          wx.request({
+            url: app.globalData.baseurl + 'order/evaluate_positive',
+            method: 'POST',
+            data: {
+              'order_id': that.data.order.order_id,
+            },
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            success: (res) => {
+              if (res.statusCode == 200) {
+                this.setData({
+                  'order.order_status': res.data
+                })
+                wx.lin.showToast({
+                  title: '提交成功!感谢您的认可！',
+                  icon: 'success',
+                  duration: 1500
+                })
+              }
+            }
+          })
+          // 差评
+        } else {
+          wx.request({
+            url: app.globalData.baseurl + 'order/evaluate_negative',
+            method: 'POST',
+            data: {
+              'order_id': that.data.order.order_id,
+            },
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            success: (res) => {
+              if (res.statusCode == 200) {
+                this.setData({
+                  'order.order_status': res.data
+                })
+                wx.lin.showToast({
+                  title: '提交成功！感谢您的反馈！',
+                  icon: 'success',
+                  duration: 1500
+                })
+              }
+            }
+          })
+        }
+        let pages = getCurrentPages()
+        pages[pages.length - 1].queryOrderDetail()
+        pages[pages.length - 2].queryAllOrders()
+      }
+    })
   },
 
   format(Date) {

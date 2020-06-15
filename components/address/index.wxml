@@ -1,15 +1,18 @@
-<l-slide-view height="182" width="750" slide-width="140" auto-close="{{true}}">
-	<view slot="left">
-		<content-card name="" bindtap="select">
-			<view class="container">
-				{{Address}}
-			</view>
-		</content-card>
-	</view>
-	<view slot="right" class="right" bindtap="del">
-		<text style="display:flex;align-items:center; justify-content:center;">删除</text>
-	</view>
-</l-slide-view>
+<view class="background">
+	<l-slide-view height="182" width="750" slide-width="140" auto-close="{{true}}">
+		<view slot="left">
+			<content-card name="" bindtap="select">
+				<view class="container">
+					{{Address}}
+				</view>
+			</content-card>
+		</view>
+		<view slot="right" class="right" bindtap="del">
+			<text style="display:flex;align-items:center; justify-content:center;">删除</text>
+		</view>
+	</l-slide-view>
+
+</view>
 
 <l-toast />
 <l-dialog />

@@ -171,6 +171,15 @@ Component({
         })
       }
     },
+    // 是否显示接单btn
+    has_btn: {
+      type: Boolean,
+      observer: function(newData, oldData) {
+        this.setData({
+          hasBtn: newData
+        })
+      }
+    },
 
   },
 
@@ -178,6 +187,7 @@ Component({
    * 组件的初始数据(封闭)
    */
   data: {
+    hasBtn: true,
     publisherName: '', // 用户名
     publisherCredit: '', // 发布者信用积分
     getExpressAddr: '', // 取件地址
@@ -246,6 +256,7 @@ Component({
       takerCredit: this.properties.taker_credit,
 
       hasSlideView: this.properties.hasSlideView,
+      hasBtn: this.properties.has_btn,
     })
   },
 

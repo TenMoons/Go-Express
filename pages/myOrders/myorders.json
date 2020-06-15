@@ -1,6 +1,9 @@
 {
   "usingComponents": {
-    "status": "/miniprogram_npm/lin-ui/status-show/index"
+    "status": "/miniprogram_npm/lin-ui/status-show/index",
+    "order-cmp": "/components/orderInfo/index",
+    "l-loadmore": "../../miniprogram_npm/lin-ui/loadmore/index"
   },
-  "navigationBarTitleText": "我的订单"
+  "navigationBarTitleText": "我的订单",
+  "enablePullDownRefresh": true
 }
