@@ -12,7 +12,8 @@
     "pages/customerService/customerservice",
     "pages/Developers/developers",
     "pages/logs/logs",
-    "pages/orderDetail/orderDetail"
+    "pages/orderDetail/orderDetail",
+    "pages/confirmOrder/confirmorder"
   ],
   "window": {
     "backgroundTextStyle": "dark",

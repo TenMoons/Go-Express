@@ -63,10 +63,12 @@ Component({
       let pages = getCurrentPages()
       let prevPage = pages[pages.length - 2]
       prevPage.setData({
-        receiveAddr: this.data.Address
+        receiveAddr: this.properties.address
       })
       // 返回
-      wx.navigateBack({})
+      wx.navigateBack({
+        delta: 1
+      })
     },
 
     // 删除地址

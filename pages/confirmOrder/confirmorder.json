@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "l-image-picker": "../../miniprogram_npm/lin-ui/image-picker/index",
+    "l-toast": "/miniprogram_npm/lin-ui/toast/index",
+    "l-message": "/miniprogram_npm/lin-ui/message/index",
+    "l-notice-bar": "../../miniprogram_npm/lin-ui/notice-bar/index",
+    "content-card": "/components/content-card/index",
+    "l-button": "/miniprogram_npm/lin-ui/button/index"
+  }
+}

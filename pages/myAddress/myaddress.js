@@ -20,6 +20,12 @@ Page({
     this.queryAllAddress()
   },
 
+  onAddr: function(e) {
+    wx.navigateTo({
+      url: '/pages/addMyAddress/addmyaddress',
+    })
+  },
+
   // 获取当前用户的所有地址
   queryAllAddress() {
     this.setData({

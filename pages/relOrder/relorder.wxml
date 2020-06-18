@@ -95,12 +95,12 @@
 			<!-- 按钮 -->
 			<content-card class="submit-button">
 				<view class="style-content">
-					<l-button l-class="button" plain formType="submit" bindtap="submitForm">发布订单</l-button>
+					<l-button l-class="button" formType="submit" bind:lintap="submitForm">发布订单</l-button>
 				</view>
 			</content-card>
 			<content-card class="submit-button">
 				<view class="style-content">
-					<l-button l-class="button" plain formType="reset" bindtap="resetForm">重置订单</l-button>
+					<l-button l-class="button" formType="reset" bindtap="resetForm">重置订单</l-button>
 				</view>
 			</content-card>
 		</view>

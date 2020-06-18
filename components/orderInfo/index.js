@@ -331,32 +331,31 @@ Component({
       this.data.order_status = 0
       wx.lin.showToast({
         title: '点击了取消～',
-        icon: 'error',
         duration: 1200
       })
     },
 
     // 跳转到详情页
     goToDetail(e) {
-      let order = {
-        "order_id": this.data.orderId,
-        "rel_wechat": this.data.publisherName,
-        "rel_credit": this.data.publisherCredit,
-        "publish_time": this.data.publishTime,
-        "receive_address": this.data.receiveAddr,
-        "express_station": this.data.getExpressAddr,
-        "express_fee": this.data.expressFee,
-        "express_size": this.data.expressSize,
-        "end_time": this.data.endTime,
-        "order_status": this.data.orderStatus,
-        "remark": this.data.remark,
-        "taker_time": this.data.takerTime,
-        "finish_time": this.data.finishTime,
-        "taker_wechat": this.data.takerWechat,
-        "taker_credit": this.data.takerCredit
-      }
+      // let order = {
+      //   "order_id": this.data.orderId,
+      //   "rel_wechat": this.data.publisherName,
+      //   "rel_credit": this.data.publisherCredit,
+      //   "publish_time": this.data.publishTime,
+      //   "receive_address": this.data.receiveAddr,
+      //   "express_station": this.data.getExpressAddr,
+      //   "express_fee": this.data.expressFee,
+      //   "express_size": this.data.expressSize,
+      //   "end_time": this.data.endTime,
+      //   "order_status": this.data.orderStatus,
+      //   "remark": this.data.remark,
+      //   "taker_time": this.data.takerTime,
+      //   "finish_time": this.data.finishTime,
+      //   "taker_wechat": this.data.takerWechat,
+      //   "taker_credit": this.data.takerCredit
+      // }
       wx.navigateTo({
-        url: '/pages/orderDetail/orderDetail?data=' + JSON.stringify(order),
+        url: '/pages/orderDetail/orderDetail?data=' + JSON.stringify(this.properties.order_id),
       })
     },
 

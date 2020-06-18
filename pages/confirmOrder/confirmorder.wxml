@@ -1,0 +1,17 @@
+<view>
+	<l-notice-bar style="margin-bottom:20rpx" type="roll" speed="1000" front-icon-name="notification">
+		请上传快递照片，作为确认送达凭证。送达凭证一经上传，不可二次修改，请谨慎操作。
+	</l-notice-bar>
+	<content-card class="content" name="选择照片">
+		<l-image-picker count="1" custom="{{true}}" bind:linchange="onChangeTap" bind:linpreview="onPreviewTap" bind:linremove="onRemoveTap">
+			<view class='add'>
+				<image class='add-icon' src='/images/icons/camera_add.png'></image>
+				<text class='add-text'>选择图片</text>
+			</view>
+		</l-image-picker>
+		<l-button size="large" style="margin-top:40rpx" bind:lintap="confirmUpload">确认上传</l-button>
+	</content-card>
+</view>
+
+<l-toast />
+<l-message />
