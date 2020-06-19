@@ -8,7 +8,8 @@
     "l-dialog": "../../miniprogram_npm/lin-ui/dialog/index",
     "l-button": "../../miniprogram_npm/lin-ui/button/index",
     "content-card": "/components/content-card/index",
-    "l-album": "/miniprogram_npm/lin-ui/album/index"
+    "l-album": "/miniprogram_npm/lin-ui/album/index",
+    "order-step-cmp": "/components/order-step/index"
   },
   "navigationBarTitleText": "订单详情"
 }

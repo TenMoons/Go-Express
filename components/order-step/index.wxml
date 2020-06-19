@@ -1,0 +1,14 @@
+<view style="margin-bottom: 30rpx" wx:if="{{orderStatus != null}}">
+	<l-steps active-index="{{orderStatus}}" dot="{{true}}">
+		<l-step title="发布订单" describe="{{publish_time}}"></l-step>
+		<l-step title="接单" describe="{{taker_time}}"></l-step>
+		<l-step title="已送达" describe="{{finish_time}}"></l-step>
+	</l-steps>
+</view>
+<view style="margin-bottom: 30rpx" wx:else>
+	<l-steps active-index="0" dot="{{true}}">
+		<l-step title="发布订单" describe="{{publish_time}}"></l-step>
+		<l-step title="接单" describe="{{taker_time}}"></l-step>
+		<l-step title="已送达" describe="{{finish_time}}"></l-step>
+	</l-steps>
+</view>

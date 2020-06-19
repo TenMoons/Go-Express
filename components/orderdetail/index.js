@@ -53,14 +53,7 @@ Component({
         })
       }
     },
-    publish_time: {
-      type: String,
-      observer: function (newData, oldData) {
-        this.setData({
-          publishTime: newData
-        })
-      }
-    },
+
     // 是否显示slide-view
     hasSlideView: {
       type: Boolean,
@@ -96,22 +89,6 @@ Component({
         })
       }
     },
-    taker_time: {
-      type: String,
-      observer: function (newData, oldData) {
-        this.setData({
-          taker_time: newData
-        })
-      }
-    },
-    finish_time: {
-      type: String,
-      observer: function (newData, oldData) {
-        this.setData({
-          finish_time: newData
-        })
-      }
-    },
 
     // 是否显示slide-view
     hasSlideView: {
@@ -124,8 +101,7 @@ Component({
    * 组件的初始数据(封闭)
    */
   data: {
-    orderStatus: '', // 订单状态：是否有人接单
-    publishTime: '',  // 发布时间
+    orderStatus: 0, // 订单状态：是否有人接单
     // 隐私信息
     orderId: '', // 订单编号
     relOpenid: '', // 发布者openid
@@ -136,8 +112,6 @@ Component({
     // 接单信息
     taker_openid: '', // 接单者openid
     taker_wechat: '', // 接单者微信名
-    taker_time: '', // 接单时间
-    finish_time: '', // 完成时间
     taker_credit: '', // 接单者credit
 
 
@@ -146,18 +120,6 @@ Component({
 
     hasSlideView: true,
 
-
-    activeIndex: 0, // 步骤条  
-    statusInfo: {
-      0: '待接单',
-      1: '已接单',
-      2: '已送达',
-      3: '已完成', // 即已确认送达
-      4: '已取消',
-    },
-    currentConf: {
-
-    }
   },
 
   /**
@@ -178,8 +140,7 @@ Component({
       // 接单信息
       taker_openid: this.properties.taker_openid, // 接单者openid
       taker_wechat: this.properties.taker_wechat, // 接单者微信名
-      taker_time: this.properties.taker_time, // 接单时间
-      finish_time: this.properties.finish_time, // 完成时间
+   
       taker_credit: this.properties.taker_credit, // 接单者credit
 
       hasSlideView: this.properties.hasSlideView,

@@ -1,11 +1,11 @@
 <view class="order-item">
-	<view style="margin-bottom: 30rpx">
-		<l-steps active-index="{{orderStatus}}">
+	<!-- <view style="margin-bottom: 30rpx">
+		<l-steps active-index="{{orderStatus}}" dot="{{true}}">
 			<l-step title="发布订单" describe="{{publishTime}}"></l-step>
 			<l-step title="接单" describe="{{taker_time=='' ? '-' : taker_time}}"></l-step>
 			<l-step title="已送达" describe="{{finish_time == '' ? '-' : finish_time}}"></l-step>
 		</l-steps>
-	</view>
+	</view> -->
 
 	<l-card type="avatar" l-class="card" image="/images/avatar/privacy.png" title="" describe="订单编号: {{orderId}}">
 		<view class='attribute-container'>

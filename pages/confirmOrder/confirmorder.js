@@ -35,87 +35,103 @@ Page({
 
   confirmUpload(e) {
     let that = this
-    wx.request({
-      url: app.globalData.baseurl + 'order/token',
-      method: 'GET',
-      success: res => {
-        if (res.statusCode == 200) {
-          let uptoken = res.data.uptoken
-          that.setData({
-            token: res.data.uptoken
-          })
-          for (let i = 0; i < this.data.picture_urls.length; i++) {
-            let filePath = this.data.picture_urls[i].url
-            let picture_id = i + 1
+    let finish_time = this.format(new Date())
 
-            // 上传至七牛云
-            wx.uploadFile({
-              filePath: filePath,
-              name: 'file',
-              url: 'https://up-z2.qiniup.com',
+    for (let i = 0; i < this.data.picture_urls.length; i++) {
+      let filePath = this.data.picture_urls[i].url
+      let picture_id = i + 1
+
+      // 上传至七牛云
+      wx.uploadFile({
+        filePath: filePath,
+        name: 'file',
+        url: 'https://up-z2.qiniup.com',
+        header: {
+          "Content-Type": "multipart/form-data"
+        },
+        formData: {
+          key: 'image/confirm/' + that.data.order_id, // 自定义图片名称
+          token: that.data.token,
+        },
+        success: res => {
+          if (res.statusCode == 200) {
+            // 这里返回key 与 hash
+            let data = res.data.split(",")
+            let imgUrl = data[1].split(":")[1]
+            imgUrl = imgUrl.substring(1, imgUrl.length - 2)
+            console.log(res.data)
+            console.log(imgUrl)
+            // 图片url上传至服务器数据库
+            wx.lin.showToast({
+              title: '上传中...',
+              icon: 'loading',
+              duration: 1200
+            })
+            wx.request({
+              url: app.globalData.baseurl + 'order/setPhoto',
+              method: 'POST',
+              data: {
+                'url': imgUrl,
+                'order_id': that.data.order_id
+              },
               header: {
-                "Content-Type": "multipart/form-data"
+                "Content-Type": "application/x-www-form-urlencoded"
               },
-              formData: {
-                key: 'image/confirm/' + that.data.order_id, // 自定义图片名称
-                token: uptoken,
-              },
-              success: res => {
-                if (res.statusCode == 200) {
-                  // 这里返回key 与 hash
-                  let data = res.data.split(",")
-                  let imgUrl = data[1].split(":")[1]
-                  imgUrl = imgUrl.substring(1, imgUrl.length - 2)
-                  console.log(res.data)
-                  console.log(imgUrl)
-                  // console.log('图片url:' + imgUrl)
-                  // 图片url上传至服务器数据库
+              success: res1 => {
+                if (res1.statusCode == 200) {
                   wx.lin.showToast({
-                    title: '上传中...',
-                    icon: 'loading',
-                    duration: 1200
+                    title: '上传成功',
+                    icon: 'success',
+                    duration: 1500
                   })
+                  let pages = getCurrentPages()
+                  let prevPage = pages[pages.length - 2]
+                  prevPage.queryOrderDetail()
                   wx.request({
-                    url: app.globalData.baseurl + 'order/setPhoto',
+                    url: app.globalData.baseurl + 'order/delivery',
                     method: 'POST',
                     data: {
-                      'url': imgUrl,
-                      'order_id': that.data.order_id
+                      'order_id': that.data.order_id,
+                      'finish_time': finish_time
                     },
                     header: {
                       "Content-Type": "application/x-www-form-urlencoded"
                     },
-                    success: res1 => {
-                      // if(res1.statusCode == 200) {
-                      //   wx.lin.showToast({
-                      //     title: '上传成功',
-                      //     icon: 'success',
-                      //     duration: 1500
-                      //   })
-                      // }
+                    success: (res) => {
+                      if (res.statusCode == 200) {
+                        prevPage.setData({
+                          'order.order_status': res.data,
+                          'order.finish_time': finish_time,
+                        })
+      
+                        pages[pages.length - 2].queryOrderDetail()
+                        
+                        wx.lin.showToast({
+                          title: '确认送达成功!',
+                          icon: 'success',
+                          duration: 1500
+                        })
+                        wx.navigateBack({})
+                      }
                     }
                   })
-                } else {
-                  wx.lin.showToast({
-                    title: '出错啦，稍后再试',
-                    icon: 'error',
-                    duration: 1500
-                  })
+                
                 }
-
-              },
-              file: res => {}
+              }
+            })
+          } else {
+            wx.lin.showToast({
+              title: '出错啦，稍后再试',
+              icon: 'error',
+              duration: 1500
             })
           }
-        } else {
-          wx.lin.showToast({
-            title: '获取token失败',
-            icon: 'error',
-            duration: 1500
-          })
-        }
-      }
-    })
+
+        },
+        file: res => {}
+      })
+    }
+
 
 
     // let pages = getCurrentPages()
@@ -130,6 +146,26 @@ Page({
 
   },
 
+  format(Date) {
+    let obj = {
+      Y: Date.getFullYear(),
+      M: Date.getMonth() + 1,
+      D: Date.getDate(),
+      H: Date.getHours(),
+      Mi: Date.getMinutes(),
+      S: Date.getSeconds()
+    }
+    // 拼接时间 hh:mm:ss
+    let time = ' ' + this.supplement(obj.H) + ':' + this.supplement(obj.Mi) + ':' + this.supplement(obj.S);
+    // yyyy-mm-dd
+    return obj.Y + '-' + this.supplement(obj.M) + '-' + this.supplement(obj.D) + time;
+  },
+
+  // 补0
+  supplement(nn) {
+    return nn = nn < 10 ? '0' + nn : nn;
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -138,6 +174,18 @@ Page({
     let that = this
     that.setData({
       order_id: JSON.parse(options.data)
+    })
+    wx.request({
+      url: app.globalData.baseurl + 'order/token',
+      method: 'GET',
+      success: res => {
+        if (res.statusCode == 200) {
+          let uptoken = res.data.uptoken
+          that.setData({
+            token: uptoken
+          })
+        }
+      }
     })
   },
 

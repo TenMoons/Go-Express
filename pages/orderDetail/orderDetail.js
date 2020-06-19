@@ -6,12 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    order: {}, // 当前订单
-    privacy: {}, // 隐私信息 
+    order: {
+      order_status: null
+    }, // 当前订单
     identity: -1, // 既不是接单者也不是发布者
     hasConfirmPhoto: false,  // 是否有上传凭证
     photo: [],  // 图片url
     order_id: '',
+    user_openid: '',
   },
 
   // 获取当前订单信息
@@ -22,11 +24,14 @@ Page({
       url: app.globalData.baseurl + 'order/detail',
       method: "GET",
       data: {
-        "order_id": that.data.order_id,
-        "user_openid": userInfo.openid, // 当前查看用户的openid，用于判断隐私信息查看权限
+        order_id: that.data.order_id,
+        user_openid: userInfo.openid, // 当前查看用户的openid，用于判断隐私信息查看权限
       },
       success: res => {
         if (res.statusCode == 200) {
+          this.setData({
+            "order.order_status": res.data[0].order_status
+          })
           console.log(res)
           res.data.forEach(element => {
             element.publish_time = element.publish_time.replace(/T/g, ' ').substring(0, element.publish_time.length - 3)
@@ -38,10 +43,20 @@ Page({
               element.finish_time = element.finish_time.replace(/T/g, ' ').substring(0, element.finish_time.length - 3)
             } 
           })
-          that.setData({
+          this.setData({
             order: res.data[0],
-            photo: ['http://qc2q2xid6.bkt.clouddn.com/' + res.data[0].confirm_photo]
+            // photo: ['http://qc2q2xid6.bkt.clouddn.com/' + res.data[0].confirm_photo]
           })
+          if (res.data[0].confirm_photo != null) {
+            that.setData({
+              photo: ['http://qc2q2xid6.bkt.clouddn.com/' + res.data[0].confirm_photo],
+              hasConfirmPhoto: true,
+            })
+          } else {
+            that.setData({
+              hasConfirmPhoto: false,
+            })
+          }
           if (userInfo.openid == res.data[0].taker_openid) {
             that.setData({
               identity: 1
@@ -51,15 +66,16 @@ Page({
               identity: 0
             })
           }
-          console.log(that.data.identity)
         } else if(res.statusCode == 201) {  // 没有查看权限
           that.setData({
             order: res.data[0],
             identity: -1
           })
         }
+        console.log("页面订单状态:" + that.data.order.order_status)
       }
     })
+    
   },
 
   // 确认送达按钮事件
@@ -67,52 +83,6 @@ Page({
     wx.navigateTo({
       url: '/pages/confirmOrder/confirmorder?data=' + JSON.stringify(this.data.order.order_id),
     })
-    // let that = this
-    // let finish_time = this.format(new Date())
-    // wx.lin.showDialog({
-    //   type: "confirm",
-    //   title: "提示",
-    //   content: "确认送达该快递？",
-
-    //   success: res => {
-    //     if (res.confirm) {
-    //       wx.request({
-    //         url: app.globalData.baseurl + 'order/delivery',
-    //         method: 'POST',
-    //         data: {
-    //           'order_id': that.data.order.order_id,
-    //           'finish_time': finish_time
-    //         },
-    //         header: {
-    //           "Content-Type": "application/x-www-form-urlencoded"
-    //         },
-    //         success: (res) => {
-    //           if (res.statusCode == 200) {
-    //             this.setData({
-    //               'order.order_status': res.data,
-    //               'order.finish_time': finish_time,
-    //             })
-    //             let pages = getCurrentPages()
-    //             pages[pages.length - 1].queryOrderDetail()
-    //             pages[pages.length - 2].queryAllOrders()
-    //             wx.lin.showToast({
-    //               title: '确认送达成功!',
-    //               icon: 'success',
-    //               duration: 1500
-    //             })
-    //           }
-    //         }
-    //       })
-    //     } else {
-    //       wx.lin.showToast({
-    //         title: '点击了取消~',
-    //         duration: 1200,
-    //       })
-    //     }
-
-    //   }
-    // })
-
   },
 
   // 获取送达凭证
@@ -321,17 +291,7 @@ Page({
     that.setData({
       order_id: JSON.parse(options.data)
     })
-    console.log(that.data.order_id)
-    // this.data.order.express_fee = this.data.order.express_fee.substring(1, this.data.order.express_fee.length)
     this.queryOrderDetail()
-  
-    // // 已送达或已确认收货
-    // if(that.data.order.order_status == 2 || that.data.order.order_status == 3) {
-    //   that.setData({
-    //     hasConfirmPhoto:true
-    //   })
-
-    // }
   },
 
   /**
