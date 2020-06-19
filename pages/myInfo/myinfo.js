@@ -7,6 +7,7 @@ Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     userInfo: {},
+    credit: '',
     authorized: false,
     code: app.globalData.code,
     orderscount:[0,0,0,0], //用户各种类型订单数量列表
@@ -118,6 +119,7 @@ Page({
               let wechat_name = res1.userInfo.nickName
               wx.login({
                 success: (res) => {
+                  console.log('code:' + res.code)
                   this.setData({
                     code: res.code
                   })
@@ -135,6 +137,10 @@ Page({
                     method: "POST",
                     success: (res) => {
                       if (res.statusCode == 200) {
+                        this.setData({
+                          credit: res.data.credit,
+                          authorized: true
+                        })
                         app.globalData.userInfo.openid = res.data.openid
                         app.globalData.userInfo.auth_status = 1
                         app.globalData.userInfo.credit = res.data.credit
@@ -210,7 +216,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let info = wx.getStorageSync('userInfo')
+    if(info != null) {
+      console.log(info)
+      this.setData({
+        credit: info.credit
+      })
+    } else {
+      this.setData({
+        credit: '-'
+      })
+    }
   },
 
   /**

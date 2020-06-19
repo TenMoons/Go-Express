@@ -9,7 +9,7 @@ Page({
     order: {
       order_status: null
     }, // 当前订单
-    identity: -1, // 既不是接单者也不是发布者
+    identity: -1, // 既不是接单者(1)也不是发布者(0)
     hasConfirmPhoto: false,  // 是否有上传凭证
     photo: [],  // 图片url
     order_id: '',
@@ -59,7 +59,7 @@ Page({
           }
           if (userInfo.openid == res.data[0].taker_openid) {
             that.setData({
-              identity: 1
+              identity: 1  
             })
           } else if (userInfo.openid == res.data[0].rel_openid) {
             that.setData({
@@ -67,6 +67,16 @@ Page({
             })
           }
         } else if(res.statusCode == 201) {  // 没有查看权限
+          res.data.forEach(element => {
+            element.publish_time = element.publish_time.replace(/T/g, ' ').substring(0, element.publish_time.length - 3)
+            element.end_time = element.end_time.replace(/T/g, ' ').substring(0, element.end_time.length - 3)
+            if (element.taker_time != null) {
+              element.taker_time = element.taker_time.replace(/T/g, ' ').substring(0, element.taker_time.length - 3)
+            }
+            if (element.finish_time != null) {
+              element.finish_time = element.finish_time.replace(/T/g, ' ').substring(0, element.finish_time.length - 3)
+            } 
+          })
           that.setData({
             order: res.data[0],
             identity: -1

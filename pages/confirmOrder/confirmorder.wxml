@@ -3,7 +3,7 @@
 		请上传快递照片，作为确认送达凭证。送达凭证一经上传，不可二次修改，请谨慎操作。
 	</l-notice-bar>
 	<content-card class="content" name="选择照片">
-		<l-image-picker count="1" custom="{{true}}" bind:linchange="onChangeTap" bind:linpreview="onPreviewTap" bind:linremove="onRemoveTap">
+		<l-image-picker count="1" custom="{{true}}" bind:linchange="onChangeTap" bind:linpreview="onPreviewTap" bind:linremove="onRemoveTap" mode="{{aspectFill}}">
 			<view class='add'>
 				<image class='add-icon' src='/images/icons/camera_add.png'></image>
 				<text class='add-text'>选择图片</text>

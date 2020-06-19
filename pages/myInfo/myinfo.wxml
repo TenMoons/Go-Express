@@ -10,7 +10,7 @@
 				<view class="bottom-container">
 					<!-- <view bind:tap="onGotoMyCredit" class="left"> -->
 					<view class="left">
-						<text>{{userInfo.credit}}</text>
+						<text>{{credit}}</text>
 						<text>信用积分</text>
 					</view>
 					<view class="v-line"></view>
@@ -49,8 +49,8 @@
 				<text>待派送</text>
 			</view>
 			<view bind:tap="onGotoMyOrder" class="icon-item" data-key="3">
-			  <l-badge maxCount="99" shape="circle" show="{{orderscount[1]!==0}}" value="{{orderscount[1]}}">
-				  <l-icon class="iconfont iconjiedanzhong" name="1"></l-icon>
+				<l-badge maxCount="99" shape="circle" show="{{orderscount[1]!==0}}" value="{{orderscount[1]}}">
+					<l-icon class="iconfont iconjiedanzhong" name="1"></l-icon>
 				</l-badge>
 				<text>待收货</text>
 			</view>

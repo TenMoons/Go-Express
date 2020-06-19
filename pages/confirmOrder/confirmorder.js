@@ -36,6 +36,7 @@ Page({
   confirmUpload(e) {
     let that = this
     let finish_time = this.format(new Date())
+    console.log(that.data.token)
 
     for (let i = 0; i < this.data.picture_urls.length; i++) {
       let filePath = this.data.picture_urls[i].url
@@ -54,6 +55,7 @@ Page({
           token: that.data.token,
         },
         success: res => {
+          console.log(res)
           if (res.statusCode == 200) {
             // 这里返回key 与 hash
             let data = res.data.split(",")
@@ -111,7 +113,10 @@ Page({
                           icon: 'success',
                           duration: 1500
                         })
-                        wx.navigateBack({})
+                        setTimeout(()=>{
+                           wx.navigateBack({})
+                        }, 1500)
+                       
                       }
                     }
                   })
@@ -175,18 +180,6 @@ Page({
     that.setData({
       order_id: JSON.parse(options.data)
     })
-    wx.request({
-      url: app.globalData.baseurl + 'order/token',
-      method: 'GET',
-      success: res => {
-        if (res.statusCode == 200) {
-          let uptoken = res.data.uptoken
-          that.setData({
-            token: uptoken
-          })
-        }
-      }
-    })
   },
 
   /**
@@ -200,7 +193,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    wx.request({
+      url: app.globalData.baseurl + 'order/token',
+      method: 'GET',
+      success: res => {
+        if (res.statusCode == 200) {
+          let uptoken = res.data.uptoken
+          console.log("token:" + uptoken)
+          that.setData({
+            token: uptoken
+          })
+        }
+      }
+    })
   },
 
   /**

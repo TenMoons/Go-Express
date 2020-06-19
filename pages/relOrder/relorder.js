@@ -37,7 +37,6 @@ Page({
       name: "我已阅读并同意《拜托了快递用户服务协议》",
       checked: false
     },
-    isHelp: false,
 
     phoneRule: {
       type: "number",
@@ -46,20 +45,6 @@ Page({
       message: "手机号码长度为11位!",
       trigger: "blur"
     }
-  },
-
-  // 跑腿费帮助
-  showHelp: function () {
-    this.setData({
-      isHelp: true
-    });
-  },
-
-  // 隐藏帮助
-  hideHelp: function () {
-    this.setData({
-      isHelp: false
-    });
   },
 
   // 同意协议
@@ -121,8 +106,13 @@ Page({
   },
 
   onShow: function () {
-    //getAddressList(this)
-
+    let pages = getCurrentPages();
+    let currPage = pages[pages.length - 1]; //当前页面
+    let json = currPage.data.receiveAddr;
+    console.log(json) //为传过来的值
+    this.setData({
+      receiveAddr: json //返回的结果
+    })
   },
 
   //选择大小件
@@ -392,102 +382,89 @@ Page({
     let remark = this.data.remark // 备注
     let OrderId = date.getFullYear() + (date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : (date.getHours() + 1)) + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours()) + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()) + (this.second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()) + receiverPhone.substring(receiverPhone.length - 4, receiverPhone.length) // 生成订单id：时间戳+手机尾号4位
     let publishTime = this.format(new Date())
-    let rel_credit = this.data.userInfo.rel_credit
+    let rel_credit = this.data.userInfo.credit
     console.log(receiveAddr)
 
     if (this.data.userInfo == null) {
-      wx.lin.showDialog({
-        type: "alert",
-        title: "提示",
-        content: "请先授权微信登录！"
+      wx.showModal({
+        title: '提示',
+        content: '请先授权微信登录！',
+        cancelColor: '#646566',
+        confirmColor: '#3963bc',
       })
     } else if (this.data.userInfo.auth_status != 1) {
-      wx.lin.showDialog({
-        type: "alert",
-        title: "提示",
-        content: "请先进行身份认证！"
+      wx.showModal({
+        title: '提示',
+        content: '请先进行身份认证！',
+        cancelColor: '#646566',
+        confirmColor: '#3963bc',
       })
     } else {
       // 表格未填写完毕
       if (receiverName === "" || receiverPhone === "" || receiveAddr === "" ||
         expressFee === "" || expressSize === "" || expressStation == "" ||
         endTime == "") {
-        wx.lin.showDialog({
-          type: "alert",
-          title: "提示",
-          content: "信息未完善"
-        })
+          wx.showModal({
+            title: '提示',
+            content: '信息未完善',
+            cancelColor: '#646566',
+            confirmColor: '#3963bc',
+          })
       } else if (this.data.rule.checked == false) {
-        wx.lin.showDialog({
-          type: "alert",
-          title: "提示",
-          content: "请先阅读并同意服务条款"
+        wx.showModal({
+          title: '提示',
+          content: '请先阅读并同意服务条款',
+          cancelColor: '#646566',
+          confirmColor: '#3963bc',
         })
+        console.log("测试：没有同意条款")
       } else {
-        wx.lin.showDialog({
-          type: "confirm",
-          title: "确认订单信息",
-          content: "收货人：" + receiverName +
-            "\n手机号：" + receiverPhone +
-            "\n快递大小：" + expressSize +
-            "\n金额：" + expressFee +
-            "\n收货地址：" + receiveAddr +
-            "\n快递站点：" + expressStation +
-            "\n取件码：" + expressNum +
-            "\n截止时间" + endTime +
-            "\n备注：" + remark,
+        console.log("测试：发布订单")
+        wx.showToast({
+          title: "发布订单中",
+          icon: "loading",
+          duration: 1500
+        })
 
-          success: res => {
-            if (res.confirm) {
-              wx.lin.showToast({
-                title: "发布订单中",
-                icon: "loading",
+        wx.request({
+          url: app.globalData.baseurl + 'order/publish',
+          data: {
+            "order_id": OrderId,
+            "rel_openid": this.data.userInfo.openid,
+            "rel_wechat": this.data.userInfo.nickName,
+            "publish_time": publishTime,
+            "receive_name": receiverName,
+            "receive_phone": receiverPhone,
+            "receive_address": receiveAddr,
+            "express_station": expressStation,
+            "express_code": expressNum,
+            "express_fee": expressFee,
+            "express_size": expressSize,
+            "end_time": endTime,
+            "remark": remark,
+            "rel_credit": rel_credit
+          },
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          method: "POST",
+          success: (res) => {
+            if (res.statusCode == 200) {
+              wx.showToast({
+                title: "发布成功",
+                icon: "success",
                 duration: 1500
               })
-
-              wx.request({
-                url: app.globalData.baseurl + 'order/publish',
-                data: {
-                  "order_id": OrderId,
-                  "rel_openid": this.data.userInfo.openid,
-                  "rel_wechat": this.data.userInfo.nickName,
-                  "publish_time": publishTime,
-                  "receive_name": receiverName,
-                  "receive_phone": receiverPhone,
-                  "receive_address": receiveAddr,
-                  "express_station": expressStation,
-                  "express_code": expressNum,
-                  "express_fee": expressFee,
-                  "express_size": expressSize,
-                  "end_time": endTime,
-                  "remark": remark,
-                  "rel_credit": rel_credit
-                },
-                header: {
-                  "Content-Type": "application/x-www-form-urlencoded"
-                },
-                method: "POST",
-                success: (res) => {
-                  if (res.statusCode == 200) {
-                    wx.lin.showToast({
-                      title: "发布成功",
-                      icon: "success",
-                      duration: 1500
-                    })
-                    this.reset()
-                  } else {
-                    wx.lin.showToast({
-                      title: "发布失败",
-                      icon: "error",
-                      duration: 1500
-                    })
-                  }
-                }
+              this.reset()
+            } else {
+              wx.showToast({
+                title: "发布失败",
+                duration: 1500
               })
-
             }
           }
         })
+
       }
     }
   },
@@ -519,9 +496,6 @@ Page({
 
   reset() {
     this.setData({
-      noteMinLen: 0,
-      index2: 0,
-      index3: 0,
       address: "",
       receiverName: "",
       receiverPhone: "",
@@ -540,4 +514,3 @@ Page({
   },
 
 })
-
