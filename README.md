@@ -13,18 +13,58 @@
 
 # 简介
 
-「拜托了快递」 是 **AHU校园快递代取平台**，是AHU软件工程综合实践作品。基于微信小程序原生语法实现，使用Lin UI[https://github.com/TaleLin/lin-ui]和自定义组件，采用七牛云对象存储；后端[https://github.com/TenMoons/go-express-django-backend]使用Django实现。
+「拜托了快递」 是 **AHU校园快递代取平台**，是AHU软件工程综合实践作品。基于微信小程序原生语法实现，使用
+
+[Lin UI]: https://github.com/TaleLin/lin-ui
+
+和自定义组件，采用七牛云对象存储；后端
+
+[后端]: https://github.com/TenMoons/go-express-django-backend
+
+使用Django实现。
 
 
 
 # 界面演示
 
 <p align="center">
-    <img style="height: 333px; width:187px
+    <img 
        src="http://qc2q2xid6.bkt.clouddn.com/homepage.gif" >
     <h3 align="center" style="font-size:16px;">首页</h3>
   <!-- </a> -->
 </p>
+<p align="center">
+    <img 
+       src="http://qc2q2xid6.bkt.clouddn.com/detail1.gif" >
+    <h3 align="center" style="font-size:16px;">查看订单1</h3>
+  <!-- </a> -->
+</p>
+<p align="center">
+    <img 
+       src="http://qc2q2xid6.bkt.clouddn.com/detail2.gif" >
+    <h3 align="center" style="font-size:16px;">查看订单2</h3>
+  <!-- </a> -->
+</p>
+<p align="center">
+    <img 
+       src="http://qc2q2xid6.bkt.clouddn.com/detail3.gif" >
+    <h3 align="center" style="font-size:16px;">查看订单3</h3>
+  <!-- </a> -->
+</p>
+<p align="center">
+    <img 
+       src="http://qc2q2xid6.bkt.clouddn.com/publish.gif" >
+    <h3 align="center" style="font-size:16px;">发布订单</h3>
+  <!-- </a> -->
+</p>
+<p align="center">
+    <img 
+       src="http://qc2q2xid6.bkt.clouddn.com/my.png" >
+    <h3 align="center" style="font-size:16px;">个人中心</h3>
+  <!-- </a> -->
+</p>
+
+
 
 
 
