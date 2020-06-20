@@ -1,7 +1,5 @@
 <p align="center">
-    <img
-      class="QR-img" src="http://qc2q2xid6.bkt.clouddn.com/logo.png
-">
+    <img src="http://qc2q2xid6.bkt.clouddn.com/logo.png" >
   <!-- </a> -->
 </p>
 
@@ -15,11 +13,11 @@
 
 「拜托了快递」 是 **AHU校园快递代取平台**，是AHU软件工程综合实践作品。基于微信小程序原生语法实现，使用
 
-[Lin UI]: https://github.com/TaleLin/lin-ui
+[Lin UI]: https://github.com/TaleLin/lin-ui	"Lin UI"
 
 和自定义组件，采用七牛云对象存储；后端
 
-[后端]: https://github.com/TenMoons/go-express-django-backend
+[后端]: https://github.com/TenMoons/go-express-django-backend	"后端"
 
 使用Django实现。
 
