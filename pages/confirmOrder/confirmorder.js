@@ -199,7 +199,7 @@ Page({
       method: 'GET',
       success: res => {
         if (res.statusCode == 200) {
-          let uptoken = res.data.uptoken
+          let uptoken = res.data
           console.log("token:" + uptoken)
           that.setData({
             token: uptoken

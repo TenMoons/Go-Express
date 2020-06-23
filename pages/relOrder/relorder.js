@@ -31,6 +31,8 @@ Page({
       [0, 10, 20]
     ],
     multiIndex: [0, 0, 0],
+    index2: 0,
+    index3: 0,
 
     // 条款
     rule: {
@@ -510,6 +512,10 @@ Page({
       ],
       multiIndex: [0, 0, 0],
       remark: "", //备注
+      size: "",
+      index2: 0,
+      index3: 0,
+
     })
   },
 

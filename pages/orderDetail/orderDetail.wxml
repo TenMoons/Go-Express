@@ -1,5 +1,5 @@
 <view>
-	<order-cmp order_id="{{order.order_id}}" rel_wechat="{{order.rel_wechat}}" express_station="{{order.express_station}}" express_fee="{{order.express_fee}}" express_size="{{order.express_size}}" end_time="{{order.end_time}}" receive_address="{{order.receive_address}}" publish_time="{{order.publish_time}}" order_status="{{order.order_status}}" remark="{{order.remark == '' ? '-' : order.remark}}" hasSlideView="{{false}}" rel_credit="{{order.rel_credit}}" has_btn="{{true}}" />
+	<order-cmp order_id="{{order.order_id}}" rel_wechat="{{order.rel_wechat}}" express_station="{{order.express_station}}" express_fee="{{order.express_fee}}" express_size="{{order.express_size}}" end_time="{{order.end_time}}" receive_address="{{order.receive_address}}" publish_time="{{order.publish_time}}" order_status="{{order.order_status}}" remark="{{order.remark == '' ? '-' : order.remark}}" hasSlideView="{{false}}" rel_credit="{{order.rel_credit}}" has_btn="{{false}}" />
 
 	<!-- <image src="/images/icons/line.png" class="gap-line"></image> -->
 	<!--接单者信息-->

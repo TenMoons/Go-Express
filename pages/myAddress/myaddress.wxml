@@ -4,7 +4,7 @@
 
 <view style="height:20px" />
 <view class="add">
-	<l-button class="add-btn" bindtap="addAddr" size="large">添加地址</l-button>
+	<l-button class="add-btn" bindtap="onAddr" size="large">添加地址</l-button>
 </view>
 
 <l-toast />

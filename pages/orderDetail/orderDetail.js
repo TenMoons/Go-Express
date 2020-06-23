@@ -12,7 +12,7 @@ Page({
     identity: -1, // 既不是接单者(1)也不是发布者(0)
     hasConfirmPhoto: false,  // 是否有上传凭证
     photo: [],  // 图片url
-    order_id: '',
+    order_id: null,
     user_openid: '',
   },
 
@@ -315,7 +315,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if(this.data.order_id != null) {
+      this.queryOrderDetail()
+    }
   },
 
   /**
