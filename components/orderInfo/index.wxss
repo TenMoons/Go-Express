@@ -84,7 +84,7 @@
 
 .right {
   display: flex;
-  height: 460rpx;
+  height: 445rpx;
   text-align: center;
   justify-content: center;
   background: #3963bc;

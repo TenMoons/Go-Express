@@ -13,10 +13,8 @@
 }
 
 .content {
-  margin-top: 7rpx;
   margin-right: 10rpx;
   font-weight: 445;
-  margin-bottom: 15rpx;
   border-radius: 10%;
 }
 
